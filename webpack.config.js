@@ -1,0 +1,83 @@
+const path = require("path");
+const html = require("html-webpack-plugin");
+
+module.exports = (env = {}, args = {}) => {
+  return {
+    devtool: "cheap-module-eval-source-map",
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: "babel-loader",
+            query: {
+              presets: ["react"]
+            }
+          }
+        },
+        {
+          test: /\.jsx$/,
+          exclude: /node_modules/,
+          use: {
+            loader: "babel-loader",
+            query: {
+              presets: ["react"]
+            }
+          }
+        },
+        {
+          test: /\.html$/,
+          use: {
+            loader: "html-loader",
+            options: { minimize: true }
+          }
+        },
+        {
+          test: /\.css$/,
+          use: ["style-loader", "css-loader"]
+        },
+        {
+          test: /\.ico$/,
+          include: path.resolve(__dirname, "media/images"),
+          use: {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]"
+            }
+          }
+        },
+        {
+          test: /\.(png|gif|otf|eot|svg|ttf|woff|woff2)$/,
+          use: {
+            loader: "url-loader",
+            options: {
+              limit: 10000
+            }
+          }
+        }
+      ]
+    },
+    devServer: {
+      port: 3000,
+      historyApiFallback: true
+    },
+    plugins: [
+      new html({
+        template: "./public/index.html",
+        filename: "./index.html"
+      })
+    ],
+    resolve: {
+      extensions: [".js", ".css", ".jsx"],
+      alias: {
+        "@config": path.resolve(
+          __dirname,
+          "config/" + args.mode + ".config.js"
+        ),
+        "@images": path.resolve(__dirname, "media/images"),
+        "@css": path.resolve(__dirname, "media/css")
+      }
+    }
+  };
+};
