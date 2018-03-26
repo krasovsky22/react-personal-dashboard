@@ -5,7 +5,6 @@ import { clickStart, clickEnd } from "../modules/test";
 
 class Test extends Component {
   constructor(props) {
-    console.log(props);
     super(props);
   }
   render() {
@@ -14,13 +13,13 @@ class Test extends Component {
         <button onClick={this.props.clickStart}>click Start</button>
         <button onClick={this.props.clickEnd}>click End</button>
         {this.props.action}
+        Current Id: {this.props.match.params.id}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  console.log("current state", state);
+const mapStateToProps = (state, ownProps) => {
   return {
     action: state.test.action
   };

@@ -62,12 +62,17 @@ module.exports = (env = {}, args = {}) => {
       port: 3000,
       historyApiFallback: true
     },
+    devtool: 'source-map',
     plugins: [
       new html({
         template: "./public/index.html",
         filename: "./index.html"
       })
     ],
+    output: {
+      publicPath: '/',
+      filename: '[name].bundle.js',
+    },
     resolve: {
       extensions: [".js", ".css", ".jsx"],
       alias: {
