@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import { routerReducer } from "react-router-redux";
-import counter from "./counter";
-import test from "./test";
-import loginReducer from '../login/duck/reducers'
+import counter from "./reducers/counter";
+import test from "./reducers/test";
+import loginReducer from './login/duck/reducers'
 
 export default combineReducers({
   routing: routerReducer,

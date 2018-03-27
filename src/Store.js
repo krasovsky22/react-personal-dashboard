@@ -4,7 +4,7 @@ import thunk from 'redux-thunk'
 import createHistory from 'history/createBrowserHistory'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import {createLogger} from 'redux-logger'
-import rootReducer from './modules'
+import rootReducer from './reducer'
 
 export const history = createHistory()
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 
 class LoginComponent extends Component {
     constructor(props){
@@ -20,5 +21,11 @@ class LoginComponent extends Component {
         );
     }
 }
+
+LoginComponent.propTypes = {
+    show_spinner: PropTypes.bool.isRequired,
+    user: PropTypes.array.isRequired,
+    errors: PropTypes.array.isRequired
+};
 
 export default LoginComponent;

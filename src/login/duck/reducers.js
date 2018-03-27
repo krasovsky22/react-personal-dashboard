@@ -2,7 +2,7 @@ import { Types as ReduxSauceTypes, createReducer } from 'reduxsauce'
 import Types from './types'
 
 export const INITIAL_STATE = {
-  user: false,
+  user: [],
   show_spinner: false,
   errors: []
 }
