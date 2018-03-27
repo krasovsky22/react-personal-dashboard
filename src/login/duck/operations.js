@@ -3,10 +3,10 @@
  * then we simply forward them as is, like loginRequest.
  */
 
-import {Creators} from './actions'
+import { Creators } from "./actions";
 
-const loginRequest = Creators.loginRequest
+const processLogin = Creators.processLogin;
 
 export default {
-    loginRequest
-}
+  processLogin
+};

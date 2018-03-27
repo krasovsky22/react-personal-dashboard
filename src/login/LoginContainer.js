@@ -1,22 +1,25 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import LoginComponent from "./LoginComponent";
-import { loginOperations } from './duck';
+import { loginOperations } from "./duck";
 
-const mapStateToProps = (state) => {
-    const {user , show_spinner, errors} = state.login;
-    return {
-        user,
-        show_spinner,
-        errors
-    }
+const mapStateToProps = state => {
+  const { user, show_spinner, errors } = state.login;
+  return {
+    user,
+    show_spinner,
+    errors
+  };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    const clickLogin = (username , password) => dispatch(loginOperations.loginRequest(username, password));
+const mapDispatchToProps = dispatch => {
+  const processLogin = (username, password) =>
+    dispatch(loginOperations.processLogin(username, password));
 
-    return {clickLogin};
-}
+  return { processLogin };
+};
 
-const LoginContainer = connect(mapStateToProps, mapDispatchToProps)(LoginComponent);
+const LoginContainer = connect(mapStateToProps, mapDispatchToProps)(
+  LoginComponent
+);
 
 export default LoginContainer;

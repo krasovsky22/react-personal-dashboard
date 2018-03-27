@@ -1,32 +1,73 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { Field, reduxForm } from "redux-form";
+import PropTypes from "prop-types";
 
-LoginComponent.propTypes = {
-    show_spinner: PropTypes.bool.isRequired,
-    user: PropTypes.array.isRequired,
-    errors: PropTypes.array.isRequired,
-    clickLogin: PropTypes.func.isRequired
+const validate = values => {
+  const errors = {};
+  if (!values.username) {
+    errors.username = "Required";
+  } else if (values.username.length > 15) {
+    errors.username = "Must be 15 characters or less";
+  }
+
+  if (!values.password) {
+    errors.password = "Required";
+  } else if (values.password.length > 15) {
+    errors.password = "Must be 15 characters or less";
+  }
+
+  return errors;
 };
 
-class LoginComponent extends Component {
-    constructor(props){
-        super(props);
-        console.log(props);
-    }
+const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+  <div>
+    <label>{label}</label>
+    <div>
+      <input {...input} placeholder={label} type={type} />
+      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+    </div>
+  </div>
+);
 
-    onClickEvent = () => {
-        this.props.clickLogin('test', 'test');
-    }
-    render() {
-        const status = this.props.show_spinner === true ? 'Loading' : 'not loading';
-        return (
-            <div>
-                test
-                <button onClick={this.onClickEvent}>Click</button>
-                {status}
-            </div>
-        );
-    }
+class LoginComponent extends Component {
+  constructor(props) {
+    super(props);
+    console.log(props);
+  }
+
+  handleMyFormSubmit = values => {
+    this.props.processLogin("test", "test_password");
+  };
+
+  render() {
+    const status = this.props.show_spinner === true ? "Loading" : "not loading";
+    const { submitting, valid } = this.props;
+    return (
+      <div>
+        {status}
+        <form onSubmit={this.props.handleSubmit(this.handleMyFormSubmit)}>
+          <div>
+            <label htmlFor="username">Username</label>
+            <Field name="username" component={renderField} type="text" placeholder="Username" />
+          </div>
+          <div>
+            <label htmlFor="password">Password</label>
+            <Field name="password" component="input" type="password" />
+          </div>
+          <button type="submit" disabled={submitting || !valid}>
+            Login
+          </button>
+        </form>
+      </div>
+    );
+  }
 }
 
-export default LoginComponent;
+LoginComponent.propTypes = {
+  show_spinner: PropTypes.bool.isRequired,
+  user: PropTypes.array.isRequired,
+  errors: PropTypes.array.isRequired,
+  processLogin: PropTypes.func.isRequired
+};
+
+export default reduxForm({ form: "login", validate })(LoginComponent);

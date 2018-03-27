@@ -1,7 +1,10 @@
-import { createTypes } from 'reduxsauce'
+import { createTypes } from "reduxsauce";
 
-export default createTypes(`
-  LOGIN_REQUEST
+export default createTypes(
+  `
+  PROCESS_LOGIN
   LOGIN_SUCCESS
   LOGIN_FAILURE
-`,{})
+`,
+  {}
+);
