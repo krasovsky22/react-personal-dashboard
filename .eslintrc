@@ -4,8 +4,8 @@
   "rules": {
     "max-len": [1, 120, 2, { "ignoreComments": true }],
     "prop-types": 0,
-    "no-console": process.env.NODE_ENV === 'production' ? 2 : 0,
-    "no-debugger": process.env.NODE_ENV === 'production' ? 2 : 0,
+    "no-console": 0,
+    "no-debugger": 0
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"]
 }
