@@ -12,9 +12,7 @@ const login = (username, password) => {
   return dispatch => {
     dispatch(processLogin(username, password));
 
-    setTimeout(_ => console.log("1000"), 1000);
-
-    dispatch(loginSuccess(username));
+    setTimeout(_ => dispatch(loginSuccess(username)), 2000);
   };
 };
 

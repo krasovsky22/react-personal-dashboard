@@ -82,7 +82,7 @@ class LoginComponent extends Component {
 
 LoginComponent.propTypes = {
   show_spinner: PropTypes.bool.isRequired,
-  user: PropTypes.array.isRequired,
+  user: PropTypes.srting,
   errors: PropTypes.array.isRequired,
   processLogin: PropTypes.func.isRequired
 };
