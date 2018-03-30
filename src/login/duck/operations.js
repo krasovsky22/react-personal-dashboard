@@ -6,7 +6,18 @@
 import { Creators } from "./actions";
 
 const processLogin = Creators.processLogin;
+const loginSuccess = Creators.loginSuccess;
+
+const login = (username, password) => {
+  return dispatch => {
+    dispatch(processLogin(username, password));
+
+    setTimeout(_ => console.log("1000"), 1000);
+
+    dispatch(loginSuccess(username));
+  };
+};
 
 export default {
-  processLogin
+  login
 };

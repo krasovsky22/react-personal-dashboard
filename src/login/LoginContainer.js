@@ -13,7 +13,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   const processLogin = (username, password) =>
-    dispatch(loginOperations.processLogin(username, password));
+    dispatch(loginOperations.login(username, password));
 
   return { processLogin };
 };

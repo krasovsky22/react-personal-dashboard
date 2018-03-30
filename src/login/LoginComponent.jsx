@@ -19,12 +19,19 @@ const validate = values => {
   return errors;
 };
 
-const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+const renderField = ({
+  input,
+  label,
+  type,
+  meta: { touched, error, warning }
+}) => (
   <div>
     <label>{label}</label>
     <div>
       <input {...input} placeholder={label} type={type} />
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+      {touched &&
+        ((error && <span>{error}</span>) ||
+          (warning && <span>{warning}</span>))}
     </div>
   </div>
 );
@@ -32,29 +39,39 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
 class LoginComponent extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
   }
 
   handleMyFormSubmit = values => {
-    this.props.processLogin("test", "test_password");
+    this.props.processLogin(values.username, values.password);
   };
 
   render() {
     const status = this.props.show_spinner === true ? "Loading" : "not loading";
+    const user = this.props.user ? this.props.user : "N/A";
     const { submitting, valid } = this.props;
     return (
       <div>
         {status}
+        <br />
+        Logged in user: {user}
         <form onSubmit={this.props.handleSubmit(this.handleMyFormSubmit)}>
           <div>
             <label htmlFor="username">Username</label>
-            <Field name="username" component={renderField} type="text" placeholder="Username" />
+            <Field
+              name="username"
+              component={renderField}
+              type="text"
+              placeholder="Username"
+            />
           </div>
           <div>
             <label htmlFor="password">Password</label>
             <Field name="password" component="input" type="password" />
           </div>
-          <button type="submit" disabled={submitting || !valid}>
+          <button
+            type="submit"
+            disabled={submitting || !valid || this.props.show_spinner}
+          >
             Login
           </button>
         </form>
