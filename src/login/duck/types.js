@@ -1,4 +1,4 @@
-import { createTypes } from "reduxsauce";
+import { createTypes } from 'reduxsauce'
 
 export default createTypes(
   `
@@ -7,4 +7,4 @@ export default createTypes(
   LOGIN_FAILURE
 `,
   {}
-);
+)

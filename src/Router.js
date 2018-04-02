@@ -1,9 +1,9 @@
-import React from "react";
-import { Route, Link } from "react-router-dom";
-import Home from "./containers/home";
-import About from "./containers/about";
-import Test from "./containers/test";
-import Login from "./login/LoginContainer";
+import React from 'react'
+import { Route, Link } from 'react-router-dom'
+import Home from './containers/home'
+import About from './containers/about'
+import Test from './containers/test'
+import Login from './login/LoginContainer'
 
 const App = () => (
   <div>
@@ -23,6 +23,6 @@ const App = () => (
       <Route exact path="/login" component={Login} />
     </main>
   </div>
-);
+)
 
-export default App;
+export default App

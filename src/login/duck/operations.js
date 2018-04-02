@@ -3,19 +3,19 @@
  * then we simply forward them as is, like loginRequest.
  */
 
-import { Creators } from "./actions";
+import { Creators } from './actions'
 
-const processLogin = Creators.processLogin;
-const loginSuccess = Creators.loginSuccess;
+const processLogin = Creators.processLogin
+const loginSuccess = Creators.loginSuccess
 
 const login = (username, password) => {
   return dispatch => {
-    dispatch(processLogin(username, password));
+    dispatch(processLogin(username, password))
 
-    setTimeout(_ => dispatch(loginSuccess(username)), 2000);
-  };
-};
+    setTimeout(_ => dispatch(loginSuccess(username)), 2000)
+  }
+}
 
 export default {
   login
-};
+}
