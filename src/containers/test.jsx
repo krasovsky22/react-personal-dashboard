@@ -19,7 +19,7 @@ class Test extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
   return {
     action: state.test.action
   };

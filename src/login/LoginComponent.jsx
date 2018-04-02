@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import PropTypes from "prop-types";
+import RaisedButton from "material-ui/RaisedButton";
+import Dialog from "material-ui/Dialog";
+import LoginTextField from "./LoginTextField";
 
 const validate = values => {
   const errors = {};
@@ -19,23 +22,6 @@ const validate = values => {
   return errors;
 };
 
-const renderField = ({
-  input,
-  label,
-  type,
-  meta: { touched, error, warning }
-}) => (
-  <div>
-    <label>{label}</label>
-    <div>
-      <input {...input} placeholder={label} type={type} />
-      {touched &&
-        ((error && <span>{error}</span>) ||
-          (warning && <span>{warning}</span>))}
-    </div>
-  </div>
-);
-
 class LoginComponent extends Component {
   constructor(props) {
     super(props);
@@ -46,45 +32,58 @@ class LoginComponent extends Component {
   };
 
   render() {
-    const status = this.props.show_spinner === true ? "Loading" : "not loading";
-    const user = this.props.user ? this.props.user : "N/A";
+    const username = this.props.user ? this.props.user : "N/A";
     const { submitting, valid } = this.props;
+    const dialogStyles = {
+      width: "25%",
+      maxWidth: "500px"
+    };
+
     return (
-      <div>
-        {status}
-        <br />
-        Logged in user: {user}
+      <Dialog
+        title="Dialog With Actions"
+        modal={false}
+        open={true}
+        contentStyle={dialogStyles}
+      >
         <form onSubmit={this.props.handleSubmit(this.handleMyFormSubmit)}>
-          <div>
-            <label htmlFor="username">Username</label>
-            <Field
-              name="username"
-              component={renderField}
-              type="text"
-              placeholder="Username"
-            />
-          </div>
-          <div>
-            <label htmlFor="password">Password</label>
-            <Field name="password" component="input" type="password" />
-          </div>
-          <button
+          <Field
+            name="username"
+            component={LoginTextField}
+            type="text"
+            hintText="Enter your Username"
+            floatingLabelText="Username"
+          />
+          <br />
+          <Field
+            name="password"
+            component={LoginTextField}
+            type="password"
+            hintText="Enter your Password"
+            floatingLabelText="Password"
+          />
+          <br />
+          <RaisedButton
+            label="Submit"
+            primary={true}
             type="submit"
             disabled={submitting || !valid || this.props.show_spinner}
-          >
-            Login
-          </button>
+          />
+          Logged in as:{username}
         </form>
-      </div>
+      </Dialog>
     );
   }
 }
 
 LoginComponent.propTypes = {
   show_spinner: PropTypes.bool.isRequired,
-  user: PropTypes.srting,
   errors: PropTypes.array.isRequired,
-  processLogin: PropTypes.func.isRequired
+  processLogin: PropTypes.func.isRequired,
+  user: PropTypes.string,
+  handleSubmit: PropTypes.func.isRequired,
+  valid: PropTypes.bool.isRequired,
+  submitting: PropTypes.bool.isRequired
 };
 
 export default reduxForm({ form: "login", validate })(LoginComponent);
