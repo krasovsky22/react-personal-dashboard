@@ -1,6 +1,24 @@
 Structure:
 https://levelup.gitconnected.com/structure-your-react-redux-project-for-scalability-and-maintainability-618ad82e32b7
 
+vscode user settings:
+{
+"git.autofetch": true,
+"explorer.confirmDelete": false,
+"files.autoSave": "afterDelay",
+"explorer.confirmDragAndDrop": false,
+"prettier.printWidth": 160,
+"prettier.singleQuote": true,
+"prettier.semi": false,
+"prettier.trailingComma": "all",
+"prettier.eslintIntegration": true,
+"eslint.autoFixOnSave": true,
+"editor.formatOnSave": true,
+"files.trimTrailingWhitespace": true,
+"files.insertFinalNewline": true,
+"files.trimFinalNewlines": true,
+}
+
 extensions:
 code --install-extension 2gua.rainbow-brackets
 code --install-extension aaron-bond.better-comments
@@ -19,7 +37,6 @@ code --install-extension moppitz.vscode-extension-auto-import
 code --install-extension msjsdiag.debugger-for-chrome
 code --install-extension NuclleaR.vscode-extension-auto-import
 code --install-extension pranaygp.vscode-css-peek
-code --install-extension riccardoNovaglia.missinglineendoffile
 code --install-extension shaharkazaz.git-merger
 code --install-extension shardulm94.trailing-spaces
 code --install-extension spearmootz.vscode-auto-install

@@ -1,26 +1,10 @@
-import React from "react";
-import TextField from "material-ui/TextField";
+import React from 'react'
+import { Input } from 'reactstrap'
 
 const LoginTextField = props => {
-  const {
-    type,
-    input,
-    floatingLabelText,
-    hint,
-    meta: { touched, error, warning }
-  } = props;
+  const { type, input } = props
 
-  const errorMessage = touched && error ? error : "";
-  return (
-    <TextField
-      {...input}
-      type={type}
-      hintText={hint}
-      errorText={errorMessage}
-      floatingLabelText={floatingLabelText}
-      autoComplete="false"
-    />
-  );
-};
+  return <Input {...input} type={type} autoComplete="false" />
+}
 
-export default LoginTextField;
+export default LoginTextField

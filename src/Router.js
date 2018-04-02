@@ -4,7 +4,6 @@ import Home from "./containers/home";
 import About from "./containers/about";
 import Test from "./containers/test";
 import Login from "./login/LoginContainer";
-import AppBar from "material-ui/AppBar";
 
 const App = () => (
   <div>
