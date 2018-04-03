@@ -102,7 +102,7 @@ module.exports = (env = {}, args = {}) => {
         '@config': path.resolve(__dirname, 'config/' + args.mode + '.config.js'),
         '@images': path.resolve(__dirname, 'media/images'),
         '@css': path.resolve(__dirname, 'media/css'),
-        '@helpers': path.resolve(__dirname, 'src/helpers')
+        '~helpers': path.resolve(__dirname, 'src/helpers')
       }
     }
   }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Jumbotron, InputGroup, Alert, Modal, ModalHeader, ModalBody } from 'reactstrap'
 import { PulseLoader } from 'react-spinners'
 import LoginTextField from './LoginTextField'
-import Loader from '@helpers/Loader'
+import Loader from '~helpers/Loader.jsx'
 
 import './login.scss'
 

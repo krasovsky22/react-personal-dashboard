@@ -3,7 +3,11 @@
     "target": "es2017",
     "checkJs": true,
     "moduleResolution": "node",
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "~helpers/*": ["src/helpers/*"]
+    }
   },
   "include": ["src/**/*.js", "src/**/*.jsx"]
 }
