@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { Field, reduxForm, InjectedFormProps } from 'redux-form'
 import PropTypes from 'prop-types'
-import { InputGroup } from 'reactstrap'
+import { Jumbotron, InputGroup, Alert, Modal, ModalHeader, ModalBody } from 'reactstrap'
+import { PulseLoader } from 'react-spinners'
 import LoginTextField from './LoginTextField'
+import Loader from '@helpers/Loader'
+
+import './login.scss'
 
 const validate = values => {
-  console.log('validation values:', values)
   const errors = {}
   if (!values.username) {
     errors.username = 'Required'
@@ -29,29 +32,37 @@ class LoginComponent extends Component {
 
   render () {
     const username = this.props.user ? this.props.user : 'N/A'
-    const { submitting, valid } = this.props
+    const { submitting, submitFailed, valid, showSpinner } = this.props
 
-    console.log('current', this.props)
+    const alert = !submitting && submitFailed ? <Alert color="danger">Login Failed</Alert> : ''
+
     return (
-      <form onSubmit={this.props.handleSubmit(this.handleMyFormSubmit)}>
-        <InputGroup>
-          <Field name="username" component={LoginTextField} type="text" placeholder="username" />
-        </InputGroup>
-        <br />
-        <InputGroup>
-          <Field name="password" component={LoginTextField} type="password" placeholder="password" />
-          <br />
-          {/* <RaisedButton label="Submit" primary={true} type="submit" disabled={submitting || !valid || this.props.show_spinner} /> */}
-          Logged in as:{username}
-        </InputGroup>
-        <input type="submit" value="Login" />
-      </form>
+      <Modal isOpen={true}>
+        <Loader active={showSpinner} />
+        <ModalBody className="loginmodal-container">
+          <form onSubmit={this.props.handleSubmit(this.handleMyFormSubmit)}>
+            <h1>Login to Your Account</h1>
+            {alert}
+            <InputGroup>
+              <Field name="username" component={LoginTextField} type="text" placeholder="username" />
+            </InputGroup>
+            <br />
+            <InputGroup>
+              <Field name="password" component={LoginTextField} type="password" placeholder="password" />
+              {/* <RaisedButton label="Submit" primary={true} type="submit" disabled={submitting || !valid || this.props.show_spinner} /> */}
+            </InputGroup>
+            Logged in as:{username}
+            <br />
+            <input type="submit" value="Login" className="login loginmodal-submit" />
+          </form>
+        </ModalBody>
+      </Modal>
     )
   }
 }
 
 LoginComponent.propTypes = {
-  show_spinner: PropTypes.bool.isRequired,
+  showSpinner: PropTypes.bool.isRequired,
   errors: PropTypes.array.isRequired,
   processLogin: PropTypes.func.isRequired,
   user: PropTypes.string,

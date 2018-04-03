@@ -3,16 +3,16 @@ import Types from './types'
 
 export const INITIAL_STATE = {
   user: '',
-  show_spinner: false,
+  showSpinner: false,
   errors: []
 }
 
 export const processLogin = (state = INITIAL_STATE, action) => {
-  return { ...state, show_spinner: true }
+  return { ...state, showSpinner: true }
 }
 
 export const loginSuccess = (state = INITIAL_STATE, action) => {
-  return { ...state, show_spinner: false, user: action.username }
+  return { ...state, showSpinner: false, user: action.username }
 }
 
 export const defaultHandler = (state = INITIAL_STATE, action) => {

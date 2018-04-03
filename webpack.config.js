@@ -1,18 +1,18 @@
-const path = require("path");
-const html = require("html-webpack-plugin");
+const path = require('path')
+const html = require('html-webpack-plugin')
 
 module.exports = (env = {}, args = {}) => {
   return {
-    devtool: "cheap-module-eval-source-map",
+    devtool: 'cheap-module-eval-source-map',
     module: {
       rules: [
         {
           test: /\.js$/,
           exclude: /node_modules/,
           use: {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             query: {
-              presets: ["react"]
+              presets: ['react']
             }
           }
         },
@@ -20,37 +20,60 @@ module.exports = (env = {}, args = {}) => {
           test: /\.jsx$/,
           exclude: /node_modules/,
           use: {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             query: {
-              presets: ["react"]
+              presets: ['react']
             }
           }
         },
         {
+          test: /\.(scss)$/,
+          use: [
+            {
+              loader: 'style-loader' // inject CSS to page
+            },
+            {
+              loader: 'css-loader' // translates CSS into CommonJS modules
+            },
+            {
+              loader: 'postcss-loader', // Run post css actions
+              options: {
+                plugins: function () {
+                  // post css plugins, can be exported to postcss.config.js
+                  return [require('precss'), require('autoprefixer')]
+                }
+              }
+            },
+            {
+              loader: 'sass-loader' // compiles SASS to CSS
+            }
+          ]
+        },
+        {
           test: /\.html$/,
           use: {
-            loader: "html-loader",
+            loader: 'html-loader',
             options: { minimize: true }
           }
         },
         {
           test: /\.css$/,
-          use: ["style-loader", "css-loader"]
+          use: ['style-loader', 'css-loader']
         },
         {
           test: /\.ico$/,
-          include: path.resolve(__dirname, "media/images"),
+          include: path.resolve(__dirname, 'media/images'),
           use: {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
-              name: "[name].[ext]"
+              name: '[name].[ext]'
             }
           }
         },
         {
           test: /\.(png|gif|otf|eot|svg|ttf|woff|woff2)$/,
           use: {
-            loader: "url-loader",
+            loader: 'url-loader',
             options: {
               limit: 10000
             }
@@ -65,24 +88,22 @@ module.exports = (env = {}, args = {}) => {
     devtool: 'source-map',
     plugins: [
       new html({
-        template: "./public/index.html",
-        filename: "./index.html"
+        template: './public/index.html',
+        filename: './index.html'
       })
     ],
     output: {
       publicPath: '/',
-      filename: '[name].bundle.js',
+      filename: '[name].bundle.js'
     },
     resolve: {
-      extensions: [".js", ".css", ".jsx"],
+      extensions: ['.js', '.css', '.jsx'],
       alias: {
-        "@config": path.resolve(
-          __dirname,
-          "config/" + args.mode + ".config.js"
-        ),
-        "@images": path.resolve(__dirname, "media/images"),
-        "@css": path.resolve(__dirname, "media/css")
+        '@config': path.resolve(__dirname, 'config/' + args.mode + '.config.js'),
+        '@images': path.resolve(__dirname, 'media/images'),
+        '@css': path.resolve(__dirname, 'media/css'),
+        '@helpers': path.resolve(__dirname, 'src/helpers')
       }
     }
-  };
-};
+  }
+}
