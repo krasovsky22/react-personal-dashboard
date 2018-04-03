@@ -3,9 +3,11 @@ import { Route, Link } from 'react-router-dom'
 import Home from './containers/home'
 import About from './containers/about'
 import Test from './containers/test'
-import Login from './login/LoginContainer'
+import Login from './auth/LoginContainer'
+import Dashboard from './dashboard/Dashboard'
+import PrivateRouteContainer from './PrivateRouteContainer'
 
-const App = () => (
+const Router = () => (
   <div>
     <header>
       <Link to="/">Home</Link>
@@ -21,8 +23,10 @@ const App = () => (
       <Route exact path="/test" component={Test} />
       <Route exact path="/test/:id" component={Test} />
       <Route exact path="/login" component={Login} />
+
+      <PrivateRouteContainer path="/dashboard" component={Dashboard} />
     </main>
   </div>
 )
 
-export default App
+export default Router

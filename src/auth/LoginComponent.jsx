@@ -3,6 +3,7 @@ import { Field, reduxForm, InjectedFormProps } from 'redux-form'
 import PropTypes from 'prop-types'
 import { Jumbotron, InputGroup, Alert, Modal, ModalHeader, ModalBody } from 'reactstrap'
 import { PulseLoader } from 'react-spinners'
+import { Redirect } from 'react-router-dom'
 import LoginTextField from './LoginTextField'
 import Loader from '~helpers/Loader.jsx'
 
@@ -36,6 +37,9 @@ class LoginComponent extends Component {
 
     const alert = !submitting && submitFailed ? <Alert color="danger">Login Failed</Alert> : ''
 
+    if (this.props.user) {
+      return <Redirect to="/dashboard" push />
+    }
     return (
       <Modal isOpen={true}>
         <Loader active={showSpinner} />
