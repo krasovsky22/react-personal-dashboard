@@ -4,6 +4,7 @@ const processLogin = Creators.processLogin
 const loginSuccess = Creators.loginSuccess
 
 const saveUserInStorage = username => {
+  localStorage.setItem('user', username)
   return dispatch => {
     dispatch(loginSuccess(username))
   }
@@ -11,7 +12,7 @@ const saveUserInStorage = username => {
 
 const login = (username, password) => {
   return dispatch => {
-    dispatch(processLogin(username, password))
+    dispatch(processLogin())
 
     setTimeout(_ => dispatch(saveUserInStorage(username)), 2000)
   }

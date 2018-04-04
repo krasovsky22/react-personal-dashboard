@@ -8,9 +8,7 @@ class PrivateRouteComponent extends Component {
   }
   render () {
     const { user, component: Component, ...rest } = this.props
-    console.log('user', user)
-    const loggedIn = user !== ''
-    return <Route {...rest} render={props => (loggedIn === true ? <Component {...props} /> : <Redirect to="/login" />)} />
+    return <Route {...rest} render={props => (user !== '' ? <Component {...props} /> : <Redirect to="/login" />)} />
   }
 }
 

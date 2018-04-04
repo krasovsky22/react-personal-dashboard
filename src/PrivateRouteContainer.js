@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { loginOperations } from './auth/duck'
 import PrivateRouteComponent from './PrivateRouteComponent'
 
@@ -12,5 +13,5 @@ const mapDispatchToProps = dispatch => {
   return { checkIfLoggedIn }
 }
 
-const PrivateRouteContainer = connect(mapStateToProps, mapDispatchToProps)(PrivateRouteComponent)
+const PrivateRouteContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(PrivateRouteComponent))
 export default PrivateRouteContainer

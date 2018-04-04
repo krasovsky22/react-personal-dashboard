@@ -16,6 +16,8 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.1.0",
     "lodash": "^4.17.5",
+    "node-sass": "^4.8.3",
+    "precss": "^3.1.2",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -32,16 +34,14 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "reduxsauce": "^0.7.0",
+    "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",
     "typeface-roboto": "^0.0.54",
     "url-loader": "^1.0.1",
     "webpack": "^4.2.0",
     "webpack-cli": "^2.0.13",
     "webpack-dev-server": "^3.1.1",
-    "webpack-merge": "^4.1.2",
-    "node-sass": "^4.8.3",
-    "precss": "^3.1.2",
-    "sass-loader": "^6.0.7"
+    "webpack-merge": "^4.1.2"
   },
   "devDependencies": {
     "@types/react": "^16.0.40",

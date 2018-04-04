@@ -28,7 +28,8 @@
     "no-unused-vars": 0
   },
   "env": {
-    "jest/globals": true
+    "jest/globals": true,
+    "browser": true
   },
   "parser": "babel-eslint",
   "parserOptions": {
