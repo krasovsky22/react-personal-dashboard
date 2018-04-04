@@ -13,5 +13,6 @@ const mapDispatchToProps = dispatch => {
   return { checkIfLoggedIn }
 }
 
+//@ts-ignore
 const PrivateRouteContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(PrivateRouteComponent))
 export default PrivateRouteContainer
