@@ -85,7 +85,6 @@ module.exports = (env = {}, args = {}) => {
       port: 3000,
       historyApiFallback: true
     },
-    devtool: 'source-map',
     plugins: [
       new html({
         template: './public/index.html',
