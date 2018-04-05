@@ -1,10 +1,11 @@
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, Switch } from 'react-router-dom'
 import Home from './containers/home'
 import About from './containers/about'
 import Test from './containers/test'
 import Login from './auth/LoginContainer'
 import Dashboard from './dashboard/Dashboard'
+import DashboardWithId from './dashboard/DashboardWithId'
 import PrivateRouteContainer from './PrivateRouteContainer'
 
 const Router = () => (
@@ -24,7 +25,10 @@ const Router = () => (
       <Route exact path="/test/:id" component={Test} />
       <Route exact path="/login" component={Login} />
 
-      <PrivateRouteContainer path="/dashboard" component={Dashboard} />
+      <Switch>
+        <PrivateRouteContainer exact path="/dashboard" component={Dashboard} />
+        <PrivateRouteContainer path="/dashboard/:id" component={DashboardWithId} />
+      </Switch>
     </main>
   </div>
 )

@@ -37,9 +37,6 @@ class LoginComponent extends Component {
 
     const alert = !submitting && submitFailed ? <Alert color="danger">Login Failed</Alert> : ''
 
-    if (this.props.user) {
-      return <Redirect to="/dashboard" push />
-    }
     return (
       <Modal isOpen={true}>
         <Loader active={showSpinner} />

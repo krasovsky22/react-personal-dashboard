@@ -20,10 +20,10 @@ const login = (username, password) => {
 
 const checkIfLoggedIn = () => {
   const token = localStorage.getItem('user')
-  console.log('token', token)
-  console.log('validation token', token)
   return dispatch => {
-    dispatch(loginSuccess(token))
+    if (token) {
+      dispatch(loginSuccess(token))
+    }
   }
 }
 export default {

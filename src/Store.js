@@ -5,6 +5,7 @@ import createHistory from 'history/createBrowserHistory'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { createLogger } from 'redux-logger'
 import rootReducer from './reducer'
+import { loginOperations } from './auth/duck'
 
 export const history = createHistory()
 
@@ -24,5 +25,7 @@ if (process.env.NODE_ENV === 'development') {
 const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers)
 
 const store = createStore(rootReducer, initialState, composedEnhancers)
+console.log('here')
+store.dispatch(loginOperations.checkIfLoggedIn())
 
 export default store
