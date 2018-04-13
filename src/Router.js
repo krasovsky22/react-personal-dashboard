@@ -1,10 +1,9 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import Home from './containers/home'
 import About from './containers/about'
 import Test from './containers/test'
 import Login from './auth/LoginContainer'
-import DashboardContainer from '~securedContent/DashboardContainer'
+import DashboardContainer from '~securedContent/dashboard/DashboardContainer'
 import DashboardWithId from '~securedContent/DashboardWithId'
 import PrivateRouteContainer from './PrivateRouteContainer'
 
@@ -18,7 +17,7 @@ const Router = () => (
 
     </header> */}
 
-    <Route exact path="/" component={Home} />
+    <Route exact path="/" component={About} />
     <Route exact path="/about-us" component={About} />
     <Route exact path="/test" component={Test} />
     <Route exact path="/test/:id" component={Test} />

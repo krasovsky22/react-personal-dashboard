@@ -1,7 +1,7 @@
 import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { increment, incrementAsync, decrement, decrementAsync } from '../reducers/counter'
+import { increment, incrementAsync, decrement, decrementAsync } from './duck/counter'
 import DashboardComponent from './DashboardComponent'
 
 const mapStateToProps = state => {
