@@ -3,7 +3,7 @@ import LoginComponent from './LoginComponent'
 import { loginOperations } from './duck'
 
 const mapStateToProps = state => {
-  const { user, showSpinner, errors } = state.login
+  const { user, showSpinner, errors } = state.security
   return {
     user,
     showSpinner,

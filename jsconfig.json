@@ -6,7 +6,8 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "~helpers/*": ["src/helpers/*"]
+      "~helpers/*": ["src/helpers/*"],
+      "~securedContent/*": ["src/securedContent/*"]
     }
   },
   "include": ["src/**/*.js", "src/**/*.jsx"]

@@ -1,14 +1,12 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 import { reducer as formReducer } from 'redux-form'
-import counter from './reducers/counter'
-import test from './reducers/test'
-import loginReducer from './auth/duck/reducers'
+import securityReducer from './auth/duck/reducers'
+import dashboardReducer from '~securedContent/Reducer'
 
 export default combineReducers({
   routing: routerReducer,
+  dashboard: dashboardReducer,
   form: formReducer,
-  test,
-  counter,
-  login: loginReducer
+  security: securityReducer
 })

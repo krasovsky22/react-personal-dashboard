@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 export default class DashboardWithId extends Component {
-  constructor (props) {
-    super(props)
-  }
   render () {
     const id = this.props.match.params.id
 

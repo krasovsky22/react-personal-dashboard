@@ -1,35 +1,33 @@
 import React from 'react'
-import { Route, Link, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Home from './containers/home'
 import About from './containers/about'
 import Test from './containers/test'
 import Login from './auth/LoginContainer'
-import Dashboard from './dashboard/Dashboard'
-import DashboardWithId from './dashboard/DashboardWithId'
+import DashboardContainer from '~securedContent/DashboardContainer'
+import DashboardWithId from '~securedContent/DashboardWithId'
 import PrivateRouteContainer from './PrivateRouteContainer'
 
 const Router = () => (
   <div>
-    <header>
+    {/* <header>
       <Link to="/">Home</Link>
       <Link to="/about-us">About</Link>
       <Link to="/test">Test</Link>
       <Link to="/test/2">Test2</Link>
-      <Link to="/login">Login</Link>
-    </header>
 
-    <main>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/about-us" component={About} />
-      <Route exact path="/test" component={Test} />
-      <Route exact path="/test/:id" component={Test} />
-      <Route exact path="/login" component={Login} />
+    </header> */}
 
-      <Switch>
-        <PrivateRouteContainer exact path="/dashboard" component={Dashboard} />
-        <PrivateRouteContainer path="/dashboard/:id" component={DashboardWithId} />
-      </Switch>
-    </main>
+    <Route exact path="/" component={Home} />
+    <Route exact path="/about-us" component={About} />
+    <Route exact path="/test" component={Test} />
+    <Route exact path="/test/:id" component={Test} />
+    <Route exact path="/login" component={Login} />
+
+    <Switch>
+      <PrivateRouteContainer exact path="/dashboard" component={DashboardContainer} />
+      <PrivateRouteContainer path="/dashboard/:id" component={DashboardWithId} />
+    </Switch>
   </div>
 )
 

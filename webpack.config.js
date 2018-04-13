@@ -100,6 +100,7 @@ module.exports = (env = {}, args = {}) => {
       alias: {
         '@config': path.resolve(__dirname, 'config/' + args.mode + '.config.js'),
         '@images': path.resolve(__dirname, 'media/images'),
+        '~securedContent': path.resolve(__dirname, 'src/securedContent'),
         '@css': path.resolve(__dirname, 'media/css'),
         '~helpers': path.resolve(__dirname, 'src/helpers')
       }

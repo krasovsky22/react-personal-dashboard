@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import PrivateRouteComponent from './PrivateRouteComponent'
 
 const mapStateToProps = state => ({
-  user: state.login.user
+  security: state.security.user
 })
 
 //@ts-ignore
