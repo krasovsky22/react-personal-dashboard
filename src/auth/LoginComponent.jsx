@@ -33,12 +33,14 @@ class LoginComponent extends Component {
 
   render () {
     const username = this.props.user ? this.props.user : 'N/A'
-    const { submitting, submitFailed, valid, showSpinner } = this.props
-
+    const { submitting, submitFailed, valid, showSpinner, redirrectUrl } = this.props
     const alert = !submitting && submitFailed ? <Alert color="danger">Login Failed</Alert> : ''
+    console.log(redirrectUrl)
+    const reddirect = this.props.user && redirrectUrl ? <Redirect to={redirrectUrl} /> : ''
 
     return (
       <Modal isOpen={true}>
+        {reddirect}
         <Loader active={showSpinner} />
         <ModalBody className="loginmodal-container">
           <form onSubmit={this.props.handleSubmit(this.handleMyFormSubmit)}>

@@ -5,8 +5,12 @@ import SecuredTemplateComponent from '~securedContent/TemplateComponent'
 class PrivateRouteComponent extends Component {
   render () {
     const { security, component: Component, ...rest } = this.props
+    const redirrectUrl = `/login?redirrectUrl=${window.location.pathname}`
     return (
-      <Route {...rest} render={props => (security.user !== '' ? <SecuredTemplateComponent component={Component} {...props} /> : <Redirect to="/login" />)} />
+      <Route
+        {...rest}
+        render={props => (security.user !== '' ? <SecuredTemplateComponent component={Component} {...props} /> : <Redirect to={redirrectUrl} />)}
+      />
     )
   }
 }

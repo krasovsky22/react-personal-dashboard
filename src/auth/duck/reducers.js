@@ -1,11 +1,13 @@
 export const PROCESS_LOGIN = 'PROCESS_LOGIN'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+export const LOGIN_REDIRRECT = 'LOGIN_REDIRRECT'
 
 export const INITIAL_STATE = {
   user: '',
   showSpinner: false,
-  errors: []
+  errors: [],
+  redirrectUrl: ''
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -14,7 +16,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, showSpinner: true }
 
     case LOGIN_SUCCESS:
-      return { ...state, showSpinner: false, user: action.username }
+      return { ...state, showSpinner: false, user: action.username, redirrect_url: action.redirrect_url }
+      
     case LOGIN_FAILURE:
     default:
       return state
