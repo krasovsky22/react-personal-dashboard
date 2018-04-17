@@ -1,5 +1,6 @@
-import { Types as ReduxSauceTypes, createReducer } from 'reduxsauce'
-import Types from './types'
+export const PROCESS_LOGIN = 'PROCESS_LOGIN'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGIN_FAILURE = 'LOGIN_FAILURE'
 
 export const INITIAL_STATE = {
   user: '',
@@ -7,22 +8,56 @@ export const INITIAL_STATE = {
   errors: []
 }
 
-export const processLogin = (state = INITIAL_STATE, action) => {
-  return { ...state, showSpinner: true }
+export default (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case PROCESS_LOGIN:
+      return { ...state, showSpinner: true }
+
+    case LOGIN_SUCCESS:
+      return { ...state, showSpinner: false, user: action.username }
+    case LOGIN_FAILURE:
+    default:
+      return state
+  }
 }
 
-export const loginSuccess = (state = INITIAL_STATE, action) => {
-  return { ...state, showSpinner: false, user: action.username }
+export const processLogin = () => {
+  return dispatch => {
+    dispatch({
+      type: PROCESS_LOGIN
+    })
+  }
 }
 
-export const defaultHandler = (state = INITIAL_STATE, action) => {
-  return state
+export const loginSuccess = user => {
+  return dispatch => {
+    dispatch({
+      type: LOGIN_SUCCESS,
+      username: user
+    })
+  }
 }
 
-export const HANDLERS = {
-  [Types.PROCESS_LOGIN]: processLogin,
-  [Types.LOGIN_SUCCESS]: loginSuccess,
-  [ReduxSauceTypes.DEFAULT]: defaultHandler
+const saveUserInStorage = username => {
+  localStorage.setItem('user', username)
+  return dispatch => {
+    dispatch(loginSuccess(username))
+  }
 }
 
-export default createReducer(INITIAL_STATE, HANDLERS)
+export const login = (username, password) => {
+  return dispatch => {
+    dispatch(processLogin())
+
+    setTimeout(_ => dispatch(saveUserInStorage(username)), 2000)
+  }
+}
+
+export const checkIfLoggedIn = () => {
+  const token = localStorage.getItem('user')
+  return dispatch => {
+    if (token) {
+      dispatch(loginSuccess(token))
+    }
+  }
+}

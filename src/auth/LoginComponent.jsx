@@ -28,7 +28,7 @@ const validate = values => {
 
 class LoginComponent extends Component {
   handleMyFormSubmit = values => {
-    this.props.processLogin(values.username, values.password)
+    this.props.login(values.username, values.password)
   }
 
   render () {
@@ -65,7 +65,7 @@ class LoginComponent extends Component {
 LoginComponent.propTypes = {
   showSpinner: PropTypes.bool.isRequired,
   errors: PropTypes.array.isRequired,
-  processLogin: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
   user: PropTypes.string,
   handleSubmit: PropTypes.func.isRequired,
   valid: PropTypes.bool.isRequired,

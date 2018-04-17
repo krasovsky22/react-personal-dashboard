@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import LoginComponent from './LoginComponent'
-import { loginOperations } from './duck'
+import { login } from './duck/reducers'
 
 const mapStateToProps = state => {
   const { user, showSpinner, errors } = state.security
@@ -11,11 +12,13 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  const processLogin = (username, password) => dispatch(loginOperations.login(username, password))
-
-  return { processLogin }
-}
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      login
+    },
+    dispatch
+  )
 
 const LoginContainer = connect(mapStateToProps, mapDispatchToProps)(LoginComponent)
 
