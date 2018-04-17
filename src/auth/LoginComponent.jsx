@@ -31,22 +31,28 @@ class LoginComponent extends Component {
     this.props.login(values.username, values.password)
   }
 
+  isLoggedIn = () => {
+    return this.props.user
+  }
+
   render () {
     const username = this.props.user ? this.props.user : 'N/A'
     const { submitting, submitFailed, valid, showSpinner, redirrectUrl, pathname } = this.props
     const alert = !submitting && submitFailed ? <Alert color="danger">Login Failed</Alert> : ''
 
-    const reddirect = this.props.user && redirrectUrl ? <Redirect to={redirrectUrl} /> : ''
+    if (this.isLoggedIn()) {
+      const url = redirrectUrl || '/dashboard'
+      return <Redirect to={url} />
+    }
 
-    console.log(pathname)
     if (pathname === '/logout') {
       this.props.logout()
       return <Redirect to="/login" />
     }
 
+    //login form
     return (
       <Modal isOpen={true}>
-        {reddirect}
         <Loader active={showSpinner} />
         <ModalBody className="loginmodal-container">
           <form onSubmit={this.props.handleSubmit(this.handleMyFormSubmit)}>
