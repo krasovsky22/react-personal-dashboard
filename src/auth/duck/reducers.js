@@ -1,13 +1,12 @@
 export const PROCESS_LOGIN = 'PROCESS_LOGIN'
+export const PROCESS_LOGOUT = 'PROCESS_LOGOUT'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
-export const LOGIN_REDIRRECT = 'LOGIN_REDIRRECT'
 
 export const INITIAL_STATE = {
   user: '',
   showSpinner: false,
-  errors: [],
-  redirrectUrl: ''
+  errors: []
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -15,9 +14,12 @@ export default (state = INITIAL_STATE, action) => {
     case PROCESS_LOGIN:
       return { ...state, showSpinner: true }
 
+    case PROCESS_LOGOUT:
+      return INITIAL_STATE
+
     case LOGIN_SUCCESS:
-      return { ...state, showSpinner: false, user: action.username, redirrect_url: action.redirrect_url }
-      
+      return { ...state, showSpinner: false, user: action.username }
+
     case LOGIN_FAILURE:
     default:
       return state
@@ -28,6 +30,14 @@ export const processLogin = () => {
   return dispatch => {
     dispatch({
       type: PROCESS_LOGIN
+    })
+  }
+}
+
+export const processLogout = () => {
+  return dispatch => {
+    dispatch({
+      type: PROCESS_LOGOUT
     })
   }
 }
@@ -53,6 +63,13 @@ export const login = (username, password) => {
     dispatch(processLogin())
 
     setTimeout(_ => dispatch(saveUserInStorage(username)), 2000)
+  }
+}
+
+export const logout = () => {
+  localStorage.removeItem('user')
+  return dispatch => {
+    dispatch(processLogout)
   }
 }
 

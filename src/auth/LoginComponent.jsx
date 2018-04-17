@@ -33,10 +33,16 @@ class LoginComponent extends Component {
 
   render () {
     const username = this.props.user ? this.props.user : 'N/A'
-    const { submitting, submitFailed, valid, showSpinner, redirrectUrl } = this.props
+    const { submitting, submitFailed, valid, showSpinner, redirrectUrl, pathname } = this.props
     const alert = !submitting && submitFailed ? <Alert color="danger">Login Failed</Alert> : ''
-    console.log(redirrectUrl)
+
     const reddirect = this.props.user && redirrectUrl ? <Redirect to={redirrectUrl} /> : ''
+
+    console.log(pathname)
+    if (pathname === '/logout') {
+      this.props.logout()
+      return <Redirect to="/login" />
+    }
 
     return (
       <Modal isOpen={true}>

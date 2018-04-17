@@ -21,7 +21,10 @@ const Router = () => (
     <Route exact path="/about-us" component={About} />
     <Route exact path="/test" component={Test} />
     <Route exact path="/test/:id" component={Test} />
-    <Route exact path="/login" component={Login} />
+    <Switch>
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/logout" component={Login} />
+    </Switch>
 
     <Switch>
       <PrivateRouteContainer exact path="/dashboard" component={DashboardContainer} />

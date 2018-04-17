@@ -25,8 +25,8 @@ class SecuredTemplateComponent extends React.Component {
       <div>
         <Nav tabs>
           <NavItem>
-            <NavLink href="#" active>
-              Link
+            <NavLink disabled href="/dashboard" active>
+              Dashboard
             </NavLink>
           </NavItem>
           <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
@@ -42,15 +42,15 @@ class SecuredTemplateComponent extends React.Component {
             </DropdownMenu>
           </Dropdown>
           <NavItem>
-            <NavLink href="/login">Login</NavLink>
-          </NavItem>
-          <NavItem>
             <NavLink href="#">Another Link</NavLink>
           </NavItem>
           <NavItem>
             <NavLink disabled href="#">
               Disabled Link
             </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/logout">Logout</NavLink>
           </NavItem>
         </Nav>
         <Component {...rest} />
