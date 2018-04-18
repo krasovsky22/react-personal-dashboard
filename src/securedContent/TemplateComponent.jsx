@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap'
+import Sidebar from './template/Sidebar'
+import Header from './template/Header'
+
+import './template/assets/sass/dashboard.scss'
 
 class SecuredTemplateComponent extends React.Component {
   constructor (props) {
@@ -22,38 +26,12 @@ class SecuredTemplateComponent extends React.Component {
   render () {
     const { component: Component, ...rest } = this.props
     return (
-      <div>
-        <Nav tabs>
-          <NavItem>
-            <NavLink disabled href="/dashboard" active>
-              Dashboard
-            </NavLink>
-          </NavItem>
-          <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-            <DropdownToggle nav caret>
-              Dropdown
-            </DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem header>Header</DropdownItem>
-              <DropdownItem disabled>Action</DropdownItem>
-              <DropdownItem>Another Action</DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>Another Action</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-          <NavItem>
-            <NavLink href="#">Another Link</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink disabled href="#">
-              Disabled Link
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="/logout">Logout</NavLink>
-          </NavItem>
-        </Nav>
-        <Component {...rest} />
+      <div className="wrapper">
+        <Sidebar {...this.props} />
+        <div id="main-panel" className="main-panel" ref="mainPanel">
+          <Header {...this.props} />
+          <Component {...rest} />
+        </div>
       </div>
     )
   }

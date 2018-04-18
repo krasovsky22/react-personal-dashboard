@@ -77,13 +77,13 @@ module.exports = (env = {}, args = {}) => {
             {
               loader: 'image-webpack-loader',
               options: {
-                bypassOnDebug: true,
-              },
-            },
-          ],
+                bypassOnDebug: true
+              }
+            }
+          ]
         },
         {
-          test: /\.(png|gif|otf|eot|svg|ttf|woff|woff2)$/,
+          test: /\.(otf|eot|ttf|woff|woff2)$/,
           use: {
             loader: 'url-loader',
             options: {

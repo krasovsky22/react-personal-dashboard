@@ -1,6 +1,7 @@
 Structure:
 https://levelup.gitconnected.com/structure-your-react-redux-project-for-scalability-and-maintainability-618ad82e32b7
 https://blog.scalac.io/react-redux-jwt-authentication.html
+https://creativetimofficial.github.io/light-bootstrap-dashboard-react/#/user
 
 vscode user settings:
 {
