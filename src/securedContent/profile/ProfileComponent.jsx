@@ -14,8 +14,8 @@ class ProfileComponent extends Component {
           <CardBody>
             <h3>Profile</h3>
             <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
-              <Row>asdasd</Row>
-              <SubmitInputRight/>
+              asdasd
+              <SubmitInputRight />
             </form>
           </CardBody>
         </Card>
