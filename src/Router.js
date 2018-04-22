@@ -5,6 +5,7 @@ import Test from './containers/test'
 import Login from './auth/LoginContainer'
 import DashboardContainer from '~securedContent/dashboard/DashboardContainer'
 import DashboardWithId from '~securedContent/DashboardWithId'
+import ProfileComponent from '~securedContent/profile/ProfileComponent'
 import PrivateRouteContainer from './PrivateRouteContainer'
 
 const Router = () => (
@@ -30,6 +31,8 @@ const Router = () => (
       <PrivateRouteContainer exact path="/dashboard" component={DashboardContainer} />
       <PrivateRouteContainer path="/dashboard/:id" component={DashboardWithId} />
     </Switch>
+
+    <PrivateRouteContainer exact path="/profile" component={ProfileComponent} />
   </div>
 )
 

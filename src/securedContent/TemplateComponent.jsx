@@ -30,7 +30,9 @@ class SecuredTemplateComponent extends React.Component {
         <Sidebar {...this.props} />
         <div id="main-panel" className="main-panel" ref="mainPanel">
           <Header {...this.props} />
-          <Component {...rest} />
+          <div className="content">
+            <Component {...rest} />
+          </div>
         </div>
       </div>
     )
