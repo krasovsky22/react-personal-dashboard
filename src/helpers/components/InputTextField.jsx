@@ -1,10 +1,20 @@
 import React from 'react'
-import { Input } from 'reactstrap'
+import { Input, FormGroup, Label, Alert } from 'reactstrap'
+import PropTypes from 'prop-types'
 
 const InputTextField = props => {
-  const { type, input, placeholder } = props
+  console.log(props)
+  const { type, id, label, input, submitting, placeholder, meta: { touched, submitFailed, error, warning } } = props
 
-  return <Input {...input} type={type} placeholder={placeholder} autoComplete="false" />
+  const divId = id || input.name
+
+  return (
+    <FormGroup>
+      <Label for={divId}>{label}</Label>
+      {error && submitFailed && <Alert color="danger">{error}</Alert>}
+      <Input {...input} type={type} placeholder={placeholder} autoComplete="false" />
+    </FormGroup>
+  )
 }
 
 export default InputTextField
