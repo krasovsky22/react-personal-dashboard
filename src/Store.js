@@ -4,7 +4,7 @@ import thunk from 'redux-thunk'
 import createHistory from 'history/createBrowserHistory'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { createLogger } from 'redux-logger'
-import rootReducer from './reducer'
+import rootReducer from './Reducer'
 import { checkIfLoggedIn } from './auth/duck/reducers'
 
 export const history = createHistory()
