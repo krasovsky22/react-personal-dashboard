@@ -3,10 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import About from './containers/about'
 import Test from './containers/test'
 import Login from './auth/LoginContainer'
-import DashboardContainer from '~securedContent/dashboard/DashboardContainer'
-import DashboardWithId from '~securedContent/DashboardWithId'
-import ProfileComponent from '~securedContent/profile/ProfileComponent'
-import PrivateRouteContainer from './PrivateRouteContainer'
+import PrivateRouter from '~securedContent/PrivateRouter'
 
 const Router = () => (
   <div>
@@ -27,12 +24,7 @@ const Router = () => (
       <Route exact path="/logout" component={Login} />
     </Switch>
 
-    <Switch>
-      <PrivateRouteContainer exact path="/dashboard" component={DashboardContainer} />
-      <PrivateRouteContainer path="/dashboard/:id" component={DashboardWithId} />
-    </Switch>
-
-    <PrivateRouteContainer exact path="/profile" component={ProfileComponent} />
+    <PrivateRouter />
   </div>
 )
 

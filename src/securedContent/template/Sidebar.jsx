@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import imagine from './assets/img/sidebar-3.jpg'
 import logo from './assets/img/reactlogo.png'
 
-const dashboardRoutes = ['dashboard', 'user', 'ololo']
+import dashboardRoutes, { RoutesValues } from '~securedContent/Routes'
 
 class Sidebar extends Component {
   constructor (props) {
@@ -27,6 +27,9 @@ class Sidebar extends Component {
     const sidebarBackground = {
       backgroundImage: 'url(' + imagine + ')'
     }
+    const routes = Array.from(RoutesValues(dashboardRoutes))
+
+    const currentPath = this.props.match.path
     return (
       <div id="sidebar" className="sidebar" data-color="black" data-image={imagine}>
         <div className="sidebar-background" style={sidebarBackground} />
@@ -42,11 +45,11 @@ class Sidebar extends Component {
         </div>
         <div className="sidebar-wrapper">
           <ul className="nav">
-            {dashboardRoutes.map((prop, key) => {
+            {routes.map((route, key) => {
               return (
-                <li className={key === 0 ? 'active' : ''} key={key}>
-                  <NavLink to='#' className="nav-link" activeClassName="active">
-                    <p>{prop}</p>
+                <li className={route.path === currentPath ? 'active' : ''} key={key}>
+                  <NavLink to={route.path} className="nav-link" activeClassName="active">
+                    <p>{route.name}</p>
                   </NavLink>
                 </li>
               )
