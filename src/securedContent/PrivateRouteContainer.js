@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router-dom'
-import { checkIfLoggedIn } from './auth/duck/reducers'
+import { checkIfLoggedIn } from '~auth/duck/reducers'
 import PrivateRouteComponent from './PrivateRouteComponent'
 
 const mapStateToProps = state => ({
