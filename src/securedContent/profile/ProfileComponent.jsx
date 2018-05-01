@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Card, Row, Container, Col, CardHeader, CardBody } from 'reactstrap'
 import { Field, reduxForm, InjectedFormProps } from 'redux-form'
+import ProfileImageComponent from './ProfileImageComponent'
 import SubmitInputRight from '~helpers/components/SubmitButtonRight'
 import InputTextField from '~helpers/components/InputTextField'
 
@@ -55,12 +56,7 @@ class ProfileComponent extends Component {
           </Card>
         </Col>
 
-        <Col xl={4} md={4}>
-          <Card>
-            <CardHeader>Header</CardHeader>
-            <CardBody>Body</CardBody>
-          </Card>
-        </Col>
+        <ProfileImageComponent />
       </Row>
     )
   }
