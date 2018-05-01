@@ -2,14 +2,13 @@ Structure:
 https://levelup.gitconnected.com/structure-your-react-redux-project-for-scalability-and-maintainability-618ad82e32b7
 https://blog.scalac.io/react-redux-jwt-authentication.html
 https://creativetimofficial.github.io/light-bootstrap-dashboard-react/#/user
-
+https://github.com/creativetimofficial/light-bootstrap-dashboard-react
 
 heroku buildpacks:set https://github.com/mars/create-react-app-buildpack.git
 Then, deploy with the new buildpack:
 
 git commit --allow-empty -m 'Switch to create-react-app-buildpack'
 git push heroku master
-
 
 vscode user settings:
 {
