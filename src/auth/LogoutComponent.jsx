@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import Loader from '~helpers/Loader.jsx'
 
 const LogoutComponent = ({ logout, logoutCompleted }) => {
   if (logoutCompleted) {
@@ -7,7 +8,11 @@ const LogoutComponent = ({ logout, logoutCompleted }) => {
   } else {
     //process logout
     logout()
-    return <div>logging out...</div>
+    return (
+      <div>
+        <Loader active={true} message="Logging out" />
+      </div>
+    )
   }
 }
 

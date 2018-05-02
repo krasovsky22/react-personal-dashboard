@@ -4,13 +4,13 @@ import { PulseLoader } from 'react-spinners'
 
 import './css/loader.scss'
 
-const Loader = ({ active }) => {
+const Loader = ({ active, message }) => {
   if (active) {
     return (
       <Jumbotron className="loader">
         <div className="pulse_loader">
           <PulseLoader color={'#123abc'} loading={true} />
-          Loading...
+          {message || 'Loading...'}
         </div>
       </Jumbotron>
     )
