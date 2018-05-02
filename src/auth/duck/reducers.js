@@ -15,7 +15,9 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, showSpinner: true }
 
     case PROCESS_LOGOUT:
-      return INITIAL_STATE
+      console.log('here')
+
+      return { ...INITIAL_STATE, logoutCompleted: true }
 
     case LOGIN_SUCCESS:
       return { ...state, showSpinner: false, user: action.username }
@@ -34,12 +36,14 @@ export const processLogin = () => {
   }
 }
 
-export const processLogout = () => {
-  return dispatch => {
-    dispatch({
-      type: PROCESS_LOGOUT
-    })
-  }
+export const processLogout = dispatch => {
+  return setTimeout(
+    _ =>
+      dispatch({
+        type: PROCESS_LOGOUT
+      }),
+    2000
+  )
 }
 
 export const loginSuccess = user => {

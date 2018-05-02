@@ -51,7 +51,9 @@ class Header extends Component {
                   <DropdownItem>Option 1</DropdownItem>
                   <DropdownItem>Option 2</DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem>Reset</DropdownItem>
+                  <DropdownItem>
+                    <NavLink href="/logout">Logout</NavLink>
+                  </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
             </Nav>

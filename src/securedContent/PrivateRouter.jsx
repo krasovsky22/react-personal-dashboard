@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import uuid from 'node-uuid'
-import PrivateRouteContainer from './PrivateRouteContainer'
+import PrivateRouteContainer from '~securedContent/PrivateRouteContainer'
 
 import Routes from './Routes'
 

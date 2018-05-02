@@ -41,13 +41,8 @@ class LoginComponent extends Component {
     const alert = !submitting && submitFailed ? <Alert color="danger">Login Failed</Alert> : ''
 
     if (this.isLoggedIn()) {
-      const url = redirrectUrl || '/dashboard'
+      const url = redirrectUrl || '/dashboard/main'
       return <Redirect to={url} />
-    }
-
-    if (pathname === '/logout') {
-      this.props.logout()
-      return <Redirect to="/login" />
     }
 
     //login form

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Card, Row, Container, Col, Button, CardHeader, CardBody, CardFooter } from 'reactstrap'
-import fontawesome from '@fortawesome/fontawesome'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { faFacebookSquare, faGithubSquare, faLinkedin } from '@fortawesome/fontawesome-free-brands'
 
@@ -16,13 +15,11 @@ const ProfileImageComponent = props => {
         <CardBody>
           <div className="content">
             <div className="author">
-              <a href="#pablo">
-                <img className="avatar border-gray" src={profileImage} alt="..." />
-                <h4 className="title">
-                  Vlad Krasovsky<br />
-                  <small>ukrasouski</small>
-                </h4>
-              </a>
+              <img className="avatar border-gray" src={profileImage} alt="..." />
+              <h4 className="title">
+                Vlad Krasovsky<br />
+                <small>ukrasouski</small>
+              </h4>
             </div>
             <p className="description text-center">
               <span>Description Here</span>
