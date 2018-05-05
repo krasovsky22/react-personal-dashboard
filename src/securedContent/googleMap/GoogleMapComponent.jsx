@@ -40,13 +40,15 @@ class GoogleMapComponent extends Component {
   }
 
   render () {
+    //'AIzaSyDVo0B9lsvbAYOmljJZlm-qmr0nTsM9vX4'
+    const apiKey = 'AIzaSyB5tFH77L0YhqacNllkfxsnpmkxpHW-FRQ'
     return (
       <Row>
         <Col xl={12} md={12}>
           <Card style={{ height: '500px' }}>
-            <GoogleMap bootstrapURLKeys={{ key: 'AIzaSyDVo0B9lsvbAYOmljJZlm-qmr0nTsM9vX4' }} defaultCenter={this.props.center} defaultZoom={this.props.zoom}>
+            <GoogleMapReact bootstrapURLKeys={{ key: apiKey }} defaultCenter={this.props.center} defaultZoom={this.props.zoom}>
               <AnyReactComponent lat={59.955413} lng={30.337844} text={'Kreyser Avrora'} />
-            </GoogleMap>
+            </GoogleMapReact>
           </Card>
         </Col>
       </Row>
