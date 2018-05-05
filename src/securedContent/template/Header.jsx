@@ -32,7 +32,7 @@ class Header extends Component {
       <Navbar color="light" expand="md" color="faded" light>
         <Container fluid>
           <div className="navbar-header">
-            <NavbarBrand href="/">reactstrap</NavbarBrand>
+            <NavbarBrand href="/">Reactstrap</NavbarBrand>
           </div>
           <NavbarToggler />
           <Collapse navbar>
@@ -45,7 +45,7 @@ class Header extends Component {
               </NavItem>
               <Dropdown isOpen={this.state.isOpen} nav inNavbar toggle={this.toggle}>
                 <DropdownToggle nav caret>
-                  Options
+                  Account
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>Option 1</DropdownItem>
