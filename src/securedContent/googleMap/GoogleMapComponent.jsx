@@ -4,25 +4,9 @@ import PropTypes from 'prop-types'
 
 import { Card, Row, Container, Col, CardHeader, CardBody } from 'reactstrap'
 import GoogleMapReact from 'google-map-react'
-import GoogleMap from 'google-map-react'
-
-import NavigatorService from './duck/test'
-
-const AnyReactComponent = ({ text }) => (
-  <div
-    styles={{
-      position: 'relative',
-      color: 'white',
-      background: 'red',
-      height: 40,
-      width: 60,
-      top: -20,
-      left: -30
-    }}
-  >
-    {text}
-  </div>
-)
+//import MapMarker from 'google-map-react'
+import Loader from '~helpers/Loader.jsx'
+import MapMarker from './MapMarker'
 
 class GoogleMapComponent extends Component {
   static propTypes = {
@@ -36,33 +20,40 @@ class GoogleMapComponent extends Component {
     greatPlaceCoords: { lat: 59.724465, lng: 30.080121 }
   }
 
-  componentDidMount () {
-    NavigatorService.getCurrentLocation().then(coords => {
-      this.setState({
-        center: { lat: coords.latitude, lng: coords.longitude }
-      })
-    })
-  }
-
   constructor (props) {
     super(props)
-    this.state = props
+    props.initializeMapData()
   }
 
   render () {
     const apiKey = 'AIzaSyB5tFH77L0YhqacNllkfxsnpmkxpHW-FRQ'
 
-    if (!this.state.center) {
-      return <div>Loading Map</div>
-    }
+    console.log('current Props:', this.props)
+
+    const { initialized, loading } = this.props.mapData
 
     return (
       <Row>
         <Col xl={12} md={12}>
           <Card style={{ height: '500px' }}>
-            <GoogleMapReact bootstrapURLKeys={{ key: apiKey }} defaultCenter={this.state.center} defaultZoom={this.props.zoom}>
-              <AnyReactComponent lat={59.955413} lng={30.337844} text={'Kreyser Avrora'} />
-            </GoogleMapReact>
+            {initialized === false ? (
+              <Loader active={true} message="Loading..." />
+            ) : (
+              <div style={{ height: 'inherit' }}>
+                <Loader active={loading} message="Loading..." />
+                <GoogleMapReact bootstrapURLKeys={{ key: apiKey }} defaultCenter={this.props.mapData.center} defaultZoom={this.props.zoom}>
+                  <MapMarker
+                    bootstrapURLKeys={{ key: apiKey }}
+                    lat={33.5721655}
+                    lng={-117.7280009}
+                    title={'Marker'}
+                    // any user props
+                  >
+                    Text
+                  </MapMarker>
+                </GoogleMapReact>
+              </div>
+            )}
           </Card>
         </Col>
       </Row>

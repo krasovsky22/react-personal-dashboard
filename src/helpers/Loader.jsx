@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Jumbotron } from 'reactstrap'
 import { PulseLoader } from 'react-spinners'
+import PropTypes from 'prop-types'
 
 import './css/loader.scss'
 
@@ -17,6 +18,11 @@ const Loader = ({ active, message }) => {
   } else {
     return <div />
   }
+}
+
+Loader.propTypes = {
+  active: PropTypes.bool.isRequired,
+  message: PropTypes.string
 }
 
 export default Loader
