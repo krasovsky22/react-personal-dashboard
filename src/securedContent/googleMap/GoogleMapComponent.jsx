@@ -6,6 +6,8 @@ import { Card, Row, Container, Col, CardHeader, CardBody } from 'reactstrap'
 import GoogleMapReact from 'google-map-react'
 import GoogleMap from 'google-map-react'
 
+import NavigatorService from './duck/test'
+
 const AnyReactComponent = ({ text }) => (
   <div
     styles={{
@@ -30,23 +32,35 @@ class GoogleMapComponent extends Component {
   }
 
   static defaultProps = {
-    center: [59.938043, 30.337157],
-    zoom: 9,
+    zoom: 12,
     greatPlaceCoords: { lat: 59.724465, lng: 30.080121 }
+  }
+
+  componentDidMount () {
+    NavigatorService.getCurrentLocation().then(coords => {
+      this.setState({
+        center: { lat: coords.latitude, lng: coords.longitude }
+      })
+    })
   }
 
   constructor (props) {
     super(props)
+    this.state = props
   }
 
   render () {
-    //'AIzaSyDVo0B9lsvbAYOmljJZlm-qmr0nTsM9vX4'
     const apiKey = 'AIzaSyB5tFH77L0YhqacNllkfxsnpmkxpHW-FRQ'
+
+    if (!this.state.center) {
+      return <div>Loading Map</div>
+    }
+
     return (
       <Row>
         <Col xl={12} md={12}>
           <Card style={{ height: '500px' }}>
-            <GoogleMapReact bootstrapURLKeys={{ key: apiKey }} defaultCenter={this.props.center} defaultZoom={this.props.zoom}>
+            <GoogleMapReact bootstrapURLKeys={{ key: apiKey }} defaultCenter={this.state.center} defaultZoom={this.props.zoom}>
               <AnyReactComponent lat={59.955413} lng={30.337844} text={'Kreyser Avrora'} />
             </GoogleMapReact>
           </Card>

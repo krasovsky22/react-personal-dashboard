@@ -1,6 +1,14 @@
+const getLocation = function (options) {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject, options)
+  })
+}
 
-const hello = 'hello'
-const work = 'worsd'
-const result = hello + work
+class NavigatorService {
+  async getCurrentLocation () {
+    const result = await getLocation().then(pos => pos.coords)
+    return result
+  }
+}
 
-result
+export default new NavigatorService()
