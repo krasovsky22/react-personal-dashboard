@@ -3,6 +3,7 @@ import { Redirect, Route } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import { Card, Row, Container, Col, CardHeader, CardBody, Button } from 'reactstrap'
+import FlashAlert from './../template/FlashAlert'
 import GoogleMapReact from 'google-map-react'
 //import MapMarker from 'google-map-react'
 import Loader from '~helpers/Loader.jsx'
@@ -40,7 +41,7 @@ class GoogleMapComponent extends Component {
 
     console.log('current Props:', this.props)
 
-    const { initialized, loading, pins } = this.props.mapData
+    const { initialized, loading, pins, error } = this.props.mapData
 
     const markers = pins.map(pin => {
       return <MapMarker {...pin} />
@@ -49,6 +50,7 @@ class GoogleMapComponent extends Component {
     return (
       <div>
         <Row>
+          {error ? <FlashAlert type="danger" message={error.message} /> : ''}
           <Col xl={12} md={12}>
             <Card style={{ height: '500px' }}>
               {initialized === false ? (
