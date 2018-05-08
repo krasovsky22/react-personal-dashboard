@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Redirect, Route } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import { Card, Row, Container, Col, CardHeader, CardBody } from 'reactstrap'
+import { Card, Row, Container, Col, CardHeader, CardBody, Button } from 'reactstrap'
 import GoogleMapReact from 'google-map-react'
 //import MapMarker from 'google-map-react'
 import Loader from '~helpers/Loader.jsx'
@@ -25,38 +25,44 @@ class GoogleMapComponent extends Component {
     props.initializeMapData()
   }
 
+  clickLocateMe = () => {
+    this.props.loadPins()
+  }
+
   render () {
     const apiKey = 'AIzaSyB5tFH77L0YhqacNllkfxsnpmkxpHW-FRQ'
 
     console.log('current Props:', this.props)
 
-    const { initialized, loading } = this.props.mapData
+    const { initialized, loading, pins } = this.props.mapData
+
+    const markers = pins.map(pin => {
+      return <MapMarker {...pin} />
+    })
 
     return (
-      <Row>
-        <Col xl={12} md={12}>
-          <Card style={{ height: '500px' }}>
-            {initialized === false ? (
-              <Loader active={true} message="Loading..." />
-            ) : (
-              <div style={{ height: 'inherit' }}>
-                <Loader active={loading} message="Loading..." />
-                <GoogleMapReact bootstrapURLKeys={{ key: apiKey }} defaultCenter={this.props.mapData.center} defaultZoom={this.props.zoom}>
-                  <MapMarker
-                    bootstrapURLKeys={{ key: apiKey }}
-                    lat={33.5721655}
-                    lng={-117.7280009}
-                    title={'Marker'}
-                    // any user props
-                  >
-                    Text
-                  </MapMarker>
-                </GoogleMapReact>
-              </div>
-            )}
-          </Card>
-        </Col>
-      </Row>
+      <div>
+        <Row>
+          <Col xl={12} md={12}>
+            <Card style={{ height: '500px' }}>
+              {initialized === false ? (
+                <Loader active={true} message="Loading..." />
+              ) : (
+                <div style={{ height: 'inherit' }}>
+                  <Loader active={loading} message="Loading..." />
+                  <GoogleMapReact bootstrapURLKeys={{ key: apiKey }} defaultCenter={this.props.mapData.center} defaultZoom={this.props.zoom}>
+                    {markers}
+                  </GoogleMapReact>
+                </div>
+              )}
+            </Card>
+          </Col>
+        </Row>
+        <Row>
+          <Button onClick={this.clickLocateMe}>Locate Me</Button>
+          <Button onClick={this.clickLocateMe}>Locate Me</Button>
+        </Row>
+      </div>
     )
   }
 }
