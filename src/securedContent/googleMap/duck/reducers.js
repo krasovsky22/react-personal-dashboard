@@ -2,6 +2,7 @@ import NavigatorService from './NavigatorService'
 
 export const INIT_MAP_CENTER = 'GOOGLE_MAP/INIT_MAP_CENTER'
 export const LOAD_MAP_PINS = 'GOOGLE_MAP/LOAD_MAP_PINS'
+export const START_MOVING_PINS = 'GOOGLE_MAP/START_MOVING_PINS'
 export const INIT_FAILED = 'GOOGLE_MAP/INIT_FAILED'
 export const LOADING = 'GOOGLE_MAP/LOADING'
 
@@ -20,6 +21,14 @@ export default (state = INITIAL_STATE, action) => {
 
     case LOAD_MAP_PINS:
       return { ...state, pins: action.pins }
+
+    case START_MOVING_PINS:
+      let newPin = { ...state.pins[0] }
+      newPin.lat += action.coord
+
+      console.log('new posotion', newPin)
+
+      return { ...state, pins: [newPin] }
 
     case INIT_MAP_CENTER:
       return { ...state, loading: false, initialized: true, center: action.center }
@@ -83,5 +92,11 @@ export const initializeMapData = username => {
 export const loadPins = () => {
   return dispatch => {
     dispatch(fetchPins())
+  }
+}
+
+export const startMoving = () => {
+  return dispatch => {
+    dispatch({ type: START_MOVING_PINS, coord: 0.0001 })
   }
 }

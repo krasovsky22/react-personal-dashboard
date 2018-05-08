@@ -29,6 +29,10 @@ class GoogleMapComponent extends Component {
     this.props.loadPins()
   }
 
+  startMoving = () => {
+    this.props.startMoving()
+  }
+
   render () {
     const apiKey = 'AIzaSyB5tFH77L0YhqacNllkfxsnpmkxpHW-FRQ'
 
@@ -60,7 +64,7 @@ class GoogleMapComponent extends Component {
         </Row>
         <Row>
           <Button onClick={this.clickLocateMe}>Locate Me</Button>
-          <Button onClick={this.clickLocateMe}>Locate Me</Button>
+          <Button onClick={this.startMoving}>Start Moving</Button>
         </Row>
       </div>
     )
