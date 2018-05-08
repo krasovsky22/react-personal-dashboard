@@ -25,9 +25,6 @@ export default (state = INITIAL_STATE, action) => {
     case START_MOVING_PINS:
       let newPin = { ...state.pins[0] }
       newPin.lat += action.coord
-
-      console.log('new posotion', newPin)
-
       return { ...state, pins: [newPin] }
 
     case INIT_MAP_CENTER:

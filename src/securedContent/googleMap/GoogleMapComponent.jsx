@@ -30,7 +30,9 @@ class GoogleMapComponent extends Component {
   }
 
   startMoving = () => {
-    this.props.startMoving()
+    window.setInterval(() => {
+      this.props.startMoving()
+    }, 100)
   }
 
   render () {
