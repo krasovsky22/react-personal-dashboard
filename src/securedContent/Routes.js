@@ -1,6 +1,7 @@
 import DashboardContainer from '~securedContent/dashboard/DashboardContainer'
 import DashboardWithId from '~securedContent/DashboardWithId'
 import ProfileComponent from '~securedContent/profile/ProfileComponent'
+import GoogleMapContainer from '~securedContent/googleMap/GoogleMapContainer'
 
 const Routes = {
   dashboard: [
@@ -13,6 +14,14 @@ const Routes = {
       path: '/dashboard/main/:id',
       name: 'Dashboard',
       Component: DashboardWithId
+    }
+  ],
+
+  googleMap: [
+    {
+      path: '/dashboard/googleMap',
+      name: 'Google Map',
+      Component: GoogleMapContainer
     }
   ],
 
