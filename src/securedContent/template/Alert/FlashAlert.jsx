@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Redirect, Route } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import { Alert } from 'reactstrap'
+import { Alert, Container } from 'reactstrap'
 
 export default class FlashAlert extends Component {
   static propTypes = {
@@ -25,9 +25,11 @@ export default class FlashAlert extends Component {
   render () {
     const { type, message } = this.props
     return (
-      <Alert color={type} isOpen={this.state.visible} toggle={this.onDismiss}>
-        {message}
-      </Alert>
+      <Container fluid>
+        <Alert color={type} isOpen={this.state.visible} toggle={this.onDismiss}>
+          {message}
+        </Alert>
+      </Container>
     )
   }
 }

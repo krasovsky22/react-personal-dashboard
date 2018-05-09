@@ -1,4 +1,5 @@
 import NavigatorService from './NavigatorService'
+import { throwAlert } from '~securedContent/TemplateActions'
 
 export const INIT_MAP_CENTER = 'GOOGLE_MAP/INIT_MAP_CENTER'
 export const LOAD_MAP_PINS = 'GOOGLE_MAP/LOAD_MAP_PINS'
@@ -49,7 +50,8 @@ export const startLoading = () => {
 const fetchMapCenterData = username => {
   return async dispatch => {
     function onSuccess (coords) {
-      dispatch({ type: INIT_MAP_CENTER, center: { lat: coords.latitude, lng: coords.longitude } })
+      //dispatch({ type: INIT_MAP_CENTER, center: { lat: coords.latitude, lng: coords.longitude } })
+      dispatch(throwAlert({ type: 'danger', message: 'test Alert' }))
 
       return coords
     }
