@@ -50,8 +50,9 @@ export const startLoading = () => {
 const fetchMapCenterData = username => {
   return async dispatch => {
     function onSuccess (coords) {
-      //dispatch({ type: INIT_MAP_CENTER, center: { lat: coords.latitude, lng: coords.longitude } })
-      dispatch(throwAlert({ type: 'danger', message: 'test Alert' }))
+      dispatch({ type: INIT_MAP_CENTER, center: { lat: coords.latitude, lng: coords.longitude } })
+      dispatch(throwAlert({ type: 'danger', message: 'test Alert3' }))
+      dispatch(throwAlert({ type: 'danger', message: 'test Alert4' }))
 
       return coords
     }

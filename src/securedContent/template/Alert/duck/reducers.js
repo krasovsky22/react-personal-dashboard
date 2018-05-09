@@ -8,13 +8,16 @@ export const INITIAL_STATE = []
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ADD_ALERT:
-      let newAlerts = Array.from(state)
-      newAlerts.push(action.alert)
-      return newAlerts
+      let newState = Array.from(state)
+      newState.push(action.alert)
+      return newState
 
     case DISMISS_ALERT:
+      const newDismissState = Array.from(state).filter(alert => alert.uniqueKey !== action.uniqueKey)
+      return newDismissState
+
     default:
-      return state
+      return INITIAL_STATE
   }
 }
 
@@ -22,15 +25,16 @@ export const addAlert = ({ type, message }) => {
   return dispatch => {
     dispatch({
       type: ADD_ALERT,
-      alert: { key: uuid(), type, message }
+      alert: { uniqueKey: uuid(), type, message }
     })
   }
 }
 
-export const dismissAlert = () => {
+export const dismissAlert = uniqueKey => {
   return dispatch => {
     dispatch({
-      type: DISMISS_ALERT
+      type: DISMISS_ALERT,
+      uniqueKey
     })
   }
 }

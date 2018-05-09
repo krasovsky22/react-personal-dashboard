@@ -15,7 +15,6 @@ class SecuredTemplateComponent extends React.Component {
     this.state = {
       dropdownOpen: false
     }
-    console.log(props)
   }
 
   toggle () {

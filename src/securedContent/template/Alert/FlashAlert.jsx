@@ -7,29 +7,28 @@ import { Alert, Container } from 'reactstrap'
 export default class FlashAlert extends Component {
   static propTypes = {
     type: PropTypes.string.isRequired,
-    message: PropTypes.string.isRequired
+    uniqueKey: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
+    dismissAlert: PropTypes.func.isRequired
   }
 
   state = { visible: true }
 
   onDismiss = () => {
-    this.setState({ ...this.state, visible: false })
+    this.props.dismissAlert(this.props.uniqueKey)
   }
 
   constructor (props) {
     super(props)
-
-    setTimeout(_ => this.setState({ ...this.state, visible: false }), 5000)
+    setTimeout(_ => this.onDismiss(), Math.floor(Math.random() * 10000) + 1000)
   }
 
   render () {
-    const { type, message } = this.props
+    const { uniqueKey, type, message } = this.props
     return (
-      <Container fluid>
-        <Alert color={type} isOpen={this.state.visible} toggle={this.onDismiss}>
-          {message}
-        </Alert>
-      </Container>
+      <Alert key={uniqueKey} color={type} toggle={this.onDismiss}>
+        {message}
+      </Alert>
     )
   }
 }

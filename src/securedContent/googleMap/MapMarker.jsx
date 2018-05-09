@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Marker from 'google-map-react'
 import './MapMarker.scss'
 
-const MapMarker = props => {
+const MapMarker = () => {
   return (
     <div>
       <div className="pin" />

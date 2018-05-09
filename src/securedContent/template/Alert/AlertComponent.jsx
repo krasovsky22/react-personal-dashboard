@@ -4,9 +4,11 @@ import PropTypes from 'prop-types'
 
 import FlashAlert from './FlashAlert'
 
-const AlertComponent = ({ alerts }) => {
-  const tAlerts = alerts.map(alert => {
-    return <FlashAlert {...alert} />
+const AlertComponent = props => {
+  const { alerts, dismissAlert } = props
+
+  const tAlerts = alerts.map((alert, key) => {
+    return <FlashAlert key={alert.uniqueKey} {...alert} dismissAlert={dismissAlert} />
   })
   return <Fragment>{tAlerts}</Fragment>
 }
