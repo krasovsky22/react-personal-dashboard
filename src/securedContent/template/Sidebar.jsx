@@ -9,20 +9,12 @@ import dashboardRoutes, { RoutesValues } from '~securedContent/Routes'
 class Sidebar extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      width: window.innerWidth
-    }
   }
+
   activeRoute (routeName) {
     return this.props.location.pathname.indexOf(routeName) > -1 ? 'active' : ''
   }
-  updateDimensions () {
-    this.setState({ width: window.innerWidth })
-  }
-  componentDidMount () {
-    this.updateDimensions()
-    window.addEventListener('resize', this.updateDimensions.bind(this))
-  }
+
   render () {
     const sidebarBackground = {
       backgroundImage: 'url(' + imagine + ')'

@@ -8,28 +8,30 @@ import AlertContainer from './template/Alert/AlertContainer'
 import './template/assets/sass/dashboard.scss'
 
 class SecuredTemplateComponent extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.toggle = this.toggle.bind(this)
-    this.state = {
-      dropdownOpen: false
-    }
+  state = {
+    sidebarOpened: false
   }
 
-  toggle () {
+  constructor (props) {
+    super(props)
+  }
+
+  openSidebar = () => {
     this.setState({
-      dropdownOpen: !this.state.dropdownOpen
+      sidebarOpened: !this.state.sidebarOpened
     })
   }
 
   render () {
     const { component: Component, ...rest } = this.props
+
+    const className = this.state.sidebarOpened ? 'wrapper nav-open' : 'wrapper'
+
     return (
-      <div className="wrapper">
+      <div className={className}>
         <Sidebar {...this.props} />
         <div id="main-panel" className="main-panel" ref="mainPanel">
-          <Header {...this.props} />
+          <Header openSidebar={this.openSidebar} {...this.props} />
           <div className="content">
             <AlertContainer />
             <Component {...rest} />

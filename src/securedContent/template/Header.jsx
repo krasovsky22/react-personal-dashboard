@@ -15,26 +15,30 @@ import {
 } from 'reactstrap'
 
 class Header extends Component {
+  state = {
+    isOpen: false
+  }
+
   constructor (props) {
     super(props)
-
-    this.state = {
-      isOpen: false
-    }
   }
+
   toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
     })
   }
+
   render () {
+    const { openSidebar } = this.props
+
     return (
       <Navbar color="light" expand="md" color="faded" light>
         <Container fluid>
           <div className="navbar-header">
             <NavbarBrand href="/">Reactstrap</NavbarBrand>
           </div>
-          <NavbarToggler />
+          <NavbarToggler onClick={openSidebar} />
           <Collapse navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
