@@ -4,10 +4,12 @@ import counter from './dashboard/duck/counter'
 import test from '../reducers/test'
 import mapData from './googleMap/duck/reducers'
 import templateData from './template/Reducer'
+import chat from './chat/duck/reducers'
 
 export default combineReducers({
   counter,
   mapData,
   test,
-  templateData
+  templateData,
+  chat
 })
