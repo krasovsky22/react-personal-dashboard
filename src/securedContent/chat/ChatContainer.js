@@ -5,7 +5,8 @@ import ChatComponent from './ChatComponent'
 import { ConnectToChat } from './duck/reducers'
 
 const mapStateToProps = state => ({
-  chat: state.dashboard.chat
+  chat: state.dashboard.chat,
+  user: state.security
 })
 
 const mapDispatchToProps = dispatch =>

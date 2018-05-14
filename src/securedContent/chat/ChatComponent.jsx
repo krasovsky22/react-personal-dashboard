@@ -3,7 +3,8 @@ import React from 'react'
 export default class ChatComponent extends React.Component {
   componentDidMount () {
     //connect to chat server
-    this.props.ConnectToChat()
+    const { user } = this.props.user
+    this.props.ConnectToChat(user)
   }
 
   render () {
