@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router-dom'
 import ChatComponent from './ChatComponent'
 import { ConnectToChat } from './duck/reducers'
+import { throwAlert } from '~securedContent/TemplateActions'
 
 const mapStateToProps = state => ({
   chat: state.dashboard.chat,
@@ -12,7 +13,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      ConnectToChat
+      ConnectToChat,
+      throwAlert
     },
     dispatch
   )

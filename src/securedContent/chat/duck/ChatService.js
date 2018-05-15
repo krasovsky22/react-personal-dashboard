@@ -4,26 +4,33 @@ import axios from 'axios'
 const socketUrl = 'http://localhost:3231'
 
 export default class ChatService {
-  constructor () {
+  socket = null
+
+  constructor (props) {
     this.socket = null
+    console.log(props)
   }
 
-  async verifyServer () {
-    const response = await axios.get(socketUrl)
-    console.log('asdasdasdasd')
-    return response
+  addListener = type => {
+    this.socket.on(type, () => {
+      this.socket.destroy
+    })
   }
 
   async connectToChat () {
     try {
-      const verify = await axios.get(socketUrl)
-      console.log(verify)
-      console.log('eeeeeeeeeeee')
-      //this.socket = io(socketUrl)
-      //return { success: true }
+      this.socket = io(socketUrl)
+
+      this.addListener('connect_error')
+
+      if (this.socket.connected === false) {
+        throw 'Unable to connect to Chat Server'
+      }
+
+      return { success: true }
     } catch (error) {
       console.error(error)
-      return { success: false, error: 'Unable to connect to chat server' }
+      return { success: false, error: error }
     }
   }
 }
