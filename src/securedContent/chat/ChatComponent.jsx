@@ -1,19 +1,23 @@
 import React from 'react'
+import { Input, Button } from 'reactstrap'
 
 import ChatService from './duck/ChatService'
 
 export default class ChatComponent extends React.Component {
+  state = {
+    inputValue: ''
+  }
+
   constructor (props) {
     super(props)
     const { throwAlert } = props
     this.chatService = new ChatService({ throwAlert })
   }
+
   componentDidMount () {
-    console.log('did mount')
     //connect to chat server
     const { user } = this.props.user
     this.chatService.connectToChat().then(data => {
-      console.log('asdasdasd',data)
       const { success, error } = data
       if (success) {
         this.props.ConnectToChat(user)
@@ -24,7 +28,28 @@ export default class ChatComponent extends React.Component {
     this.props.ConnectToChat(user)
   }
 
+  sendMesage = () => {
+    const message = this.state.inputValue
+
+    if (message !== '') {
+      this.chatService.sendMessage(message)
+    }
+  }
+
+  updateInputValue = event => {
+    this.setState({
+      inputValue: event.target.value
+    })
+  }
+
   render () {
-    return <div>Chat widget</div>
+    return (
+      <div>
+        <Input type="text" name="message" onChange={event => this.updateInputValue(event)} />
+        <Button type="submit" onClick={this.sendMesage}>
+          Send
+        </Button>
+      </div>
+    )
   }
 }

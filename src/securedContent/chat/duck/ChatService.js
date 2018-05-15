@@ -20,7 +20,7 @@ export default class ChatService {
           break
 
         case 'connect':
-          this.props.throwAlert({ type: 'warning', message: 'successfully connected' })
+          this.props.throwAlert({ type: 'success', message: 'successfully connected' })
           break
 
         default:
@@ -41,5 +41,9 @@ export default class ChatService {
       console.error(error)
       return { success: false, error: error }
     }
+  }
+
+  sendMessage (message) {
+    this.socket.emit('new_message', message)
   }
 }

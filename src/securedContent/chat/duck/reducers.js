@@ -13,6 +13,10 @@ export default (state = INITIAL_STATE, action) => {
     case CONNECT:
       const users = [action.username]
       return { ...INITIAL_STATE, users }
+    case SEND_MESSAGE:
+      let messages = [...state.messages]
+      messages.push(action.message)
+      return { ...state, messages }
     case DISCONNECT:
       return INITIAL_STATE
     default:
@@ -25,4 +29,8 @@ export const ConnectToChat = username => {
 }
 export const Disconnect = () => {
   return dispatch => dispatch({ type: DISCONNECT })
+}
+
+export const PublishMessage = message => {
+  return dispatch => dispatch({type: SEND_MESSAGE, message})
 }
