@@ -10,22 +10,14 @@ export default class ChatComponent extends React.Component {
 
   constructor (props) {
     super(props)
-    const { throwAlert } = props
-    this.chatService = new ChatService({ throwAlert })
+    const { throwAlert, InitializeChatAction } = props
+    this.chatService = new ChatService({ throwAlert, InitializeChatAction })
   }
 
   componentDidMount () {
     //connect to chat server
     const { user } = this.props.user
-    this.chatService.connectToChat().then(data => {
-      const { success, error } = data
-      if (success) {
-        this.props.ConnectToChat(user)
-      } else {
-        this.props.throwAlert({ type: 'danger', message: error })
-      }
-    })
-    this.props.ConnectToChat(user)
+    this.chatService.connectToChat(user)
   }
 
   sendMesage = () => {
@@ -43,8 +35,10 @@ export default class ChatComponent extends React.Component {
   }
 
   render () {
+    const usersConnected = this.props.chat.users.map(user => <div>User Connected: {user}</div>)
     return (
       <div>
+        {usersConnected}
         <Input type="text" name="message" onChange={event => this.updateInputValue(event)} />
         <Button type="submit" onClick={this.sendMesage}>
           Send
