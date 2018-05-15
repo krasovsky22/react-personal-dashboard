@@ -1,5 +1,9 @@
 const io = require('./index').io
 
+const { NEW_MESSAGE } = require('./events')
+
+const connectedUsers = []
+
 module.exports = function (socket) {
   console.log('Socket id:', socket.id)
 

@@ -20,11 +20,11 @@ export default class ChatService {
           break
 
         case 'connect':
-          this.props.throwAlert({ type: 'success', message: 'successfully connected' })
+          this.props.throwAlert({ type: 'success', message: 'Successfully Connected to Chat Server' })
           break
 
         default:
-          console.warn(`Unable to handle type ${type}`)
+          console.warn(`Unable to handle event type ${type}`)
           break
       }
     })
