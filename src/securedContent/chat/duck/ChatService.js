@@ -8,24 +8,33 @@ export default class ChatService {
 
   constructor (props) {
     this.socket = null
-    console.log(props)
+    this.props = props
   }
 
-  addListener = type => {
+  addListener = (type, action) => {
     this.socket.on(type, () => {
-      this.socket.destroy
+      switch (type) {
+        case 'connect_error':
+          this.socket.destroy()
+          this.props.throwAlert({ type: 'danger', message: 'Unable to connect Chat Server' })
+          break
+
+        case 'connect':
+          this.props.throwAlert({ type: 'warning', message: 'successfully connected' })
+          break
+
+        default:
+          console.warn(`Unable to handle type ${type}`)
+          break
+      }
     })
   }
 
   async connectToChat () {
     try {
       this.socket = io(socketUrl)
-
-      this.addListener('connect_error')
-
-      if (this.socket.connected === false) {
-        throw 'Unable to connect to Chat Server'
-      }
+      this.addListener('connect_error', this.props.throwAlert)
+      this.addListener('connect')
 
       return { success: true }
     } catch (error) {

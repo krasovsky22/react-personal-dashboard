@@ -13,6 +13,7 @@ export default class ChatComponent extends React.Component {
     //connect to chat server
     const { user } = this.props.user
     this.chatService.connectToChat().then(data => {
+      console.log('asdasdasd',data)
       const { success, error } = data
       if (success) {
         this.props.ConnectToChat(user)
