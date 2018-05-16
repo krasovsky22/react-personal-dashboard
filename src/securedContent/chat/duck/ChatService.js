@@ -47,7 +47,10 @@ export default class ChatService {
   }
 
   connectToChat = user => {
-    this.socket = io(socketUrl)
+    console.log('connecting...', this.socket)
+    if (this.socket === null) {
+      this.socket = io(socketUrl)
+    }
     this.username = user
 
     //declare events
@@ -66,5 +69,9 @@ export default class ChatService {
 
   sendMessage (message) {
     this.socket.emit(SERVER_EVENTS.NEW_MESSAGE, { username: this.username, message })
+  }
+
+  disconnect () {
+    this.socket.destroy()
   }
 }

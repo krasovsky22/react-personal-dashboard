@@ -20,6 +20,10 @@ export default class ChatComponent extends React.Component {
     this.chatService.connectToChat(user)
   }
 
+  componentWillUnmount () {
+    this.chatService.disconnect()
+  }
+
   sendMesage = () => {
     const message = this.state.inputValue
 
