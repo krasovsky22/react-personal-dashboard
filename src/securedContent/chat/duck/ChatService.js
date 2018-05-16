@@ -10,7 +10,6 @@ export default class ChatService {
   username = null
 
   constructor (props) {
-    this.socket = null
     this.props = props
   }
 
@@ -31,12 +30,9 @@ export default class ChatService {
           this.initializeUser()
           break
         case SERVER_EVENTS.INITIALIZATION_COMPLETED:
-          if (this.socket.id !== data.socketId) {
-            this.socket.id = data.socketId
-          }
+          console.warn('socket initialization copmleted:', data)
           break
         case SERVER_EVENTS.NEW_MESSAGE:
-          console.log('socket', this.socket)
           action(data)
           break
         default:
@@ -47,10 +43,7 @@ export default class ChatService {
   }
 
   connectToChat = user => {
-    console.log('connecting...', this.socket)
-    if (this.socket === null) {
-      this.socket = io(socketUrl)
-    }
+    this.socket = io(socketUrl)
     this.username = user
 
     //declare events
@@ -64,7 +57,7 @@ export default class ChatService {
   }
 
   initializeUser = () => {
-    this.socket.emit(SERVER_EVENTS.INITIALIZE_USER, { username: this.username, socketId: this.socket.id })
+    this.socket.emit(SERVER_EVENTS.INITIALIZE_USER, { username: this.username })
   }
 
   sendMessage (message) {
