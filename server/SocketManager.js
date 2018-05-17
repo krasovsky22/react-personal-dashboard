@@ -19,13 +19,10 @@ module.exports = function (socket) {
   socket.on('disconnect', () => {
     if ('user' in socket) {
       connectedClients = removeClient(connectedClients, socket)
-      console.log('dictonnecting...', socket.id, socket.user)
     }
   })
 
   socket.on(NEW_MESSAGE, data => {
-    console.log('incomming message data:', data)
-    console.log('current connected clients:', connectedClients)
     const { username, message } = data
     io.emit(NEW_MESSAGE, { username: username, message: `${username} said: ${message}` })
   })
@@ -47,7 +44,7 @@ function addClient (clientList, username, socket) {
 
 function removeClient (clientList, socket) {
   let newList = Object.assign({}, clientList)
-  const newSocketList = newList[socket.user].sockets.filter(tSocket => tSocket.id !== socket.id)
+  const newSocketList = newList[socket.user].filter(tSocket => tSocket.id !== socket.id)
   if (newSocketList.length === 0) {
     delete newList[socket.user]
   } else {
