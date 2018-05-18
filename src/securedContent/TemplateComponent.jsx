@@ -6,6 +6,7 @@ import Header from './template/Header'
 import AlertContainer from './template/Alert/AlertContainer'
 
 import './template/assets/sass/dashboard.scss'
+import PluginsComponent from '~securedContent/plugins/PluginsComponent'
 
 class SecuredTemplateComponent extends React.Component {
   state = {
@@ -35,6 +36,7 @@ class SecuredTemplateComponent extends React.Component {
           <div className="content">
             <AlertContainer />
             <Component {...rest} />
+            <PluginsComponent />
           </div>
         </div>
       </div>

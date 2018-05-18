@@ -6,7 +6,7 @@ import { InitializeChatAction, PublishMessageAction } from './duck/reducers'
 import { throwAlert } from '~securedContent/TemplateActions'
 
 const mapStateToProps = state => ({
-  chat: state.dashboard.chat,
+  chat: state.dashboard.plugins.chat,
   user: state.security
 })
 

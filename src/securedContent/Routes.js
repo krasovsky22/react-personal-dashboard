@@ -2,7 +2,6 @@ import DashboardContainer from '~securedContent/dashboard/DashboardContainer'
 import DashboardWithId from '~securedContent/DashboardWithId'
 import ProfileComponent from '~securedContent/profile/ProfileComponent'
 import GoogleMapContainer from '~securedContent/googleMap/GoogleMapContainer'
-import ChatContainer from '~securedContent/chat/ChatContainer'
 
 const Routes = {
   dashboard: [
@@ -23,14 +22,6 @@ const Routes = {
       path: '/dashboard/googleMap',
       name: 'Google Map',
       Component: GoogleMapContainer
-    }
-  ],
-
-  chat: [
-    {
-      path: '/dashboard/chat',
-      name: 'Chat',
-      Component: ChatContainer
     }
   ],
 
