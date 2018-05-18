@@ -17,8 +17,7 @@ export default (state = INITIAL_STATE, action) => {
       return newState
     case SEND_MESSAGE:
       let messages = [...state.messages]
-      const { username, message } = action.data
-      messages.push(message)
+      messages.push(action.data)
       return { ...state, messages }
     case DISCONNECT:
       return INITIAL_STATE
@@ -34,6 +33,6 @@ export const DisconnectAction = () => {
   return dispatch => dispatch({ type: DISCONNECT })
 }
 
-export const PublishMessageAction = ({ username, message }) => {
-  return dispatch => dispatch({ type: SEND_MESSAGE, data: { username, message } })
+export const PublishMessageAction = message => {
+  return dispatch => dispatch({ type: SEND_MESSAGE, data: message })
 }

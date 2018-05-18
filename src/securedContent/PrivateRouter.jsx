@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import uuid from 'node-uuid'
 import PrivateRouteContainer from '~securedContent/PrivateRouteContainer'
@@ -31,7 +31,7 @@ const PrivateRouter = () => {
       }
     }
   }
-  return <div>{outputDiv}</div>
+  return <Fragment>{outputDiv}</Fragment>
 }
 
 export default PrivateRouter

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import About from './containers/about'
 import Test from './containers/test'
@@ -8,7 +8,7 @@ import PrivateRouter from '~securedContent/PrivateRouter'
 import PrivateRouteContainer from '~securedContent/PrivateRouteContainer'
 
 const Router = () => (
-  <div>
+  <Fragment>
     {/* <header>
       <Link to="/">Home</Link>
       <Link to="/about-us">About</Link>
@@ -25,7 +25,7 @@ const Router = () => (
     <Route exact path="/logout" component={LogoutContainer} />
 
     <PrivateRouter />
-  </div>
+  </Fragment>
 )
 
 export default Router

@@ -16,19 +16,21 @@ export default class ChatComponent extends React.Component {
   constructor (props) {
     super(props)
     const { throwAlert, InitializeChatAction, PublishMessageAction } = props
+
+    console.log('CHAT SERVICE', this.chatService)
     this.chatService = new ChatService({ throwAlert, InitializeChatAction, PublishMessageAction })
 
-    this.props.chat.messages = [
-      { type: 'reply', message: 'test message 1' },
-      { type: 'answer', message: 'test message 2' },
-      { type: 'reply', message: 'test message 3' },
-      { type: 'answer', message: 'test message 4' },
-      { type: 'reply', message: 'test message 5' },
-      { type: 'answer', message: 'test message 6' },
-      { type: 'reply', message: 'test message 7' },
-      { type: 'answer', message: 'test message 8' },
-      { type: 'reply', message: 'test message 9' }
-    ]
+    // this.props.chat.messages = [
+    //   { type: 'reply', message: 'test message 1' },
+    //   { type: 'answer', message: 'test message 2' },
+    //   { type: 'reply', message: 'test message 3' },
+    //   { type: 'answer', message: 'test message 4' },
+    //   { type: 'reply', message: 'test message 5' },
+    //   { type: 'answer', message: 'test message 6' },
+    //   { type: 'reply', message: 'test message 7' },
+    //   { type: 'answer', message: 'test message 8' },
+    //   { type: 'reply', message: 'test message 9' }
+    // ]
   }
 
   contacts = ['user 1', 'user 2', 'user 3', 'user 4']
@@ -38,12 +40,6 @@ export default class ChatComponent extends React.Component {
     const { user } = this.props.user
     console.log('CHAT', this.chatConnected)
     this.chatConnected = this.chatService.connectToChat(user)
-  }
-
-  componentWillUpdate (nextProps, nextState) {
-    console.log('CURRENT', this.props, this.state)
-    console.log('NEXT', nextProps, nextState)
-    return true
   }
 
   componentWillUnmount () {
