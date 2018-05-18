@@ -54,6 +54,8 @@ export default class ChatService {
     this.addListener(SERVER_EVENTS.USER_ALREADY_CONNECTED)
     this.addListener(SERVER_EVENTS.NEW_MESSAGE, this.props.PublishMessageAction)
     this.addListener('test_event', this.props.InitializeChatAction)
+
+    return true
   }
 
   initializeUser = () => {

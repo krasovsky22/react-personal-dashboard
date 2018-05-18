@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input, Button, Row, Col } from 'reactstrap'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { faPaperPlane } from '@fortawesome/fontawesome-free-solid'
+import { faPaperPlane, faUserCircle } from '@fortawesome/fontawesome-free-solid'
 
 import ChatService from './duck/ChatService'
 import './Chat.scss'
@@ -10,6 +10,8 @@ export default class ChatComponent extends React.Component {
   state = {
     inputValue: ''
   }
+
+  chatConnected = false
 
   constructor (props) {
     super(props)
@@ -29,10 +31,19 @@ export default class ChatComponent extends React.Component {
     ]
   }
 
+  contacts = ['user 1', 'user 2', 'user 3', 'user 4']
+
   componentDidMount () {
     //connect to chat server
     const { user } = this.props.user
-    this.chatService.connectToChat(user)
+    console.log('CHAT', this.chatConnected)
+    this.chatConnected = this.chatService.connectToChat(user)
+  }
+
+  componentWillUpdate (nextProps, nextState) {
+    console.log('CURRENT', this.props, this.state)
+    console.log('NEXT', nextProps, nextState)
+    return true
   }
 
   componentWillUnmount () {
@@ -54,14 +65,24 @@ export default class ChatComponent extends React.Component {
   }
 
   render () {
-    const Messages = this.props.chat.messages.map(({type , message}) => <div className={type}>{message}</div>)
+    const Messages = this.props.chat.messages.map(({ type, message }) => (
+      <div className={type}>
+        <p>{message}</p>
+      </div>
+    ))
+    const Contacts = this.contacts.map(contact => (
+      <div className="contact">
+        <div className="profile_image">
+          <FontAwesomeIcon icon={faUserCircle} size="2x" />
+        </div>
+        {contact}
+      </div>
+    ))
     return (
       <div className="chat-container">
         <Row>
           <Col xl={3} md={3}>
-            <div className="contacts container">
-              <div className="">Contacts here</div>
-            </div>
+            <div className="contacts container">{Contacts}</div>
           </Col>
           <Col xl={9} md={9}>
             <div className="messages">{Messages}</div>

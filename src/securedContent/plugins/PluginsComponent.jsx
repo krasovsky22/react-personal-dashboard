@@ -7,8 +7,11 @@ import { faComments } from '@fortawesome/fontawesome-free-solid'
 import ChatContainer from './chat/ChatContainer'
 
 class PluginsComponent extends React.Component {
-  state = {
-    open: true
+  constructor (props) {
+    super(props)
+    this.state = {
+      open: false
+    }
   }
   toggle = () => {
     this.setState({ ...this.state, open: !this.state.open })
