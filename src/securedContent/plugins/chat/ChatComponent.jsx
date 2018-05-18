@@ -16,7 +16,17 @@ export default class ChatComponent extends React.Component {
     const { throwAlert, InitializeChatAction, PublishMessageAction } = props
     this.chatService = new ChatService({ throwAlert, InitializeChatAction, PublishMessageAction })
 
-    this.props.chat.messages = ['test message', 'test message', 'test message', 'test message', 'test message', 'test message', 'test message', 'test message']
+    this.props.chat.messages = [
+      { type: 'reply', message: 'test message 1' },
+      { type: 'answer', message: 'test message 2' },
+      { type: 'reply', message: 'test message 3' },
+      { type: 'answer', message: 'test message 4' },
+      { type: 'reply', message: 'test message 5' },
+      { type: 'answer', message: 'test message 6' },
+      { type: 'reply', message: 'test message 7' },
+      { type: 'answer', message: 'test message 8' },
+      { type: 'reply', message: 'test message 9' }
+    ]
   }
 
   componentDidMount () {
@@ -44,15 +54,17 @@ export default class ChatComponent extends React.Component {
   }
 
   render () {
-    const Messages = this.props.chat.messages.map(message => <div className="replies">{message}</div>)
+    const Messages = this.props.chat.messages.map(({type , message}) => <div className={type}>{message}</div>)
     return (
       <div className="chat-container">
         <Row>
           <Col xl={3} md={3}>
-            <div className="contacts">Contacts here</div>
+            <div className="contacts container">
+              <div className="">Contacts here</div>
+            </div>
           </Col>
           <Col xl={9} md={9}>
-            <div className="container messages">{Messages}</div>
+            <div className="messages">{Messages}</div>
 
             <div className="form-group row message-input">
               <Input type="text" name="message" className="col-md-11" onChange={event => this.updateInputValue(event)} />
