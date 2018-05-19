@@ -9,14 +9,6 @@ import PrivateRouteContainer from '~securedContent/PrivateRouteContainer'
 
 const Router = () => (
   <Fragment>
-    {/* <header>
-      <Link to="/">Home</Link>
-      <Link to="/about-us">About</Link>
-      <Link to="/test">Test</Link>
-      <Link to="/test/2">Test2</Link>
-
-    </header> */}
-
     <Route exact path="/" component={About} />
     <Route exact path="/about-us" component={About} />
     <Route exact path="/test" component={Test} />
