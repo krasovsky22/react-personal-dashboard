@@ -11,14 +11,9 @@ export default class ChatComponent extends React.Component {
     inputValue: ''
   }
 
-  chatConnected = false
-
   constructor (props) {
     super(props)
     const { throwAlert, InitializeChatAction, PublishMessageAction } = props
-
-    console.log('CHAT SERVICE', this.chatService)
-    this.chatService = new ChatService({ throwAlert, InitializeChatAction, PublishMessageAction })
 
     // this.props.chat.messages = [
     //   { type: 'reply', message: 'test message 1' },
@@ -38,19 +33,19 @@ export default class ChatComponent extends React.Component {
   componentDidMount () {
     //connect to chat server
     const { user } = this.props.user
-    console.log('CHAT', this.chatConnected)
-    this.chatConnected = this.chatService.connectToChat(user)
+    this.props.InitializeChatAction(user)
+    //this.chatConnected = this.chatService.connectToChat(user)
   }
 
   componentWillUnmount () {
-    this.chatService.disconnect()
+    //this.chatService.disconnect()
   }
 
   sendMesage = () => {
     const message = this.state.inputValue
 
     if (message !== '') {
-      this.chatService.sendMessage(message)
+      //this.chatService.sendMessage(message)
     }
   }
 

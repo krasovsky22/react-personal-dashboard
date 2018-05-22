@@ -3,15 +3,13 @@ import axios from 'axios'
 
 import * as SERVER_EVENTS from '~server/events'
 
+var patch = require('socketio-wildcard')(io.Manager)
+
 const socketUrl = 'http://localhost:3231'
 
 export default class ChatService {
   socket = null
   username = null
-
-  constructor (props) {
-    this.props = props
-  }
 
   addListener = (type, action) => {
     this.socket.on(type, data => {
@@ -42,18 +40,31 @@ export default class ChatService {
     })
   }
 
-  connectToChat = user => {
+  connectToChat = function (user) {
     this.socket = io(socketUrl)
+
+    patch(this.socket)
     this.username = user
+    this.socket.on('*', data => {
+      console.log('socket data', data)
+    })
+
+    this.socket.on('connect', data => {
+      console.log('CONNECT', data)
+    })
+
+    this.socket.on('connect_error', data => {
+      console.log('connect_error', data)
+    })
 
     //declare events
-    this.addListener('connect_error', this.props.throwAlert)
-    this.addListener('connect') //will trigger initialize user
-    this.addListener(SERVER_EVENTS.CONNECTED)
-    this.addListener(SERVER_EVENTS.INITIALIZATION_COMPLETED)
-    this.addListener(SERVER_EVENTS.USER_ALREADY_CONNECTED)
-    this.addListener(SERVER_EVENTS.NEW_MESSAGE, this.props.PublishMessageAction)
-    this.addListener('test_event', this.props.InitializeChatAction)
+    // this.addListener('connect_error', this.props.throwAlert)
+    // this.addListener('connect') //will trigger initialize user
+    // this.addListener(SERVER_EVENTS.CONNECTED)
+    // this.addListener(SERVER_EVENTS.INITIALIZATION_COMPLETED)
+    // this.addListener(SERVER_EVENTS.USER_ALREADY_CONNECTED)
+    // this.addListener(SERVER_EVENTS.NEW_MESSAGE, this.props.PublishMessageAction)
+    // this.addListener('test_event', this.props.InitializeChatAction)
 
     return true
   }

@@ -3,6 +3,8 @@ export const DISCONNECT = 'CHAT/DISCONNECT'
 export const SEND_MESSAGE = 'CHAT/SEND_MESSAGE'
 export const DISPLAY_MESSAGE = 'CHAT/DISPLAY_MESSAGE'
 
+export const INIT_CHAT_CONNECTION = 'CHAT/SAGA/INIT_CONNECTION'
+
 export const INITIAL_STATE = {
   users: [],
   messages: []
@@ -27,7 +29,7 @@ export default (state = INITIAL_STATE, action) => {
 }
 
 export const InitializeChatAction = username => {
-  return dispatch => dispatch({ type: CONNECTED, username: username })
+  return dispatch => dispatch({ type: INIT_CHAT_CONNECTION, username: username })
 }
 export const DisconnectAction = () => {
   return dispatch => dispatch({ type: DISCONNECT })
