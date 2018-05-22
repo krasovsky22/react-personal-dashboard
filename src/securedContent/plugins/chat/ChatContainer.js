@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router-dom'
 import ChatComponent from './ChatComponent'
-import { InitializeChatAction, DisconnectAction, PublishMessageAction } from './duck/reducers'
+import { InitializeChatAction, DisconnectAction, SendMessageToServer } from './duck/reducers'
 import { throwAlert } from '~securedContent/TemplateActions'
 
 const mapStateToProps = state => ({
@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch =>
     {
       InitializeChatAction,
       DisconnectAction,
-      PublishMessageAction,
+      SendMessageToServer,
       throwAlert
     },
     dispatch

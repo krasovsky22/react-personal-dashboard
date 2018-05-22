@@ -28,6 +28,6 @@ const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers)
 
 const store = createStore(rootReducer, initialState, composedEnhancers)
 
-sagaMiddleware.run(handleChatServerResponse)
+sagaMiddleware.run(handleChatServerResponse, store)
 
 export default store

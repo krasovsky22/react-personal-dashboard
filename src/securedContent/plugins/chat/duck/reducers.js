@@ -1,9 +1,9 @@
 export const CONNECTED = 'CHAT/CONNECT'
 export const DISCONNECT = 'CHAT/DISCONNECT'
-export const SEND_MESSAGE = 'CHAT/SEND_MESSAGE'
 export const DISPLAY_MESSAGE = 'CHAT/DISPLAY_MESSAGE'
 
 export const INIT_CHAT_CONNECTION = 'CHAT/SAGA/INIT_CONNECTION'
+export const SEND_MESSAGE = 'CHAT/SAGA/SEND_MESSAGE'
 
 export const INITIAL_STATE = {
   users: [],
@@ -17,7 +17,7 @@ export default (state = INITIAL_STATE, action) => {
       const newState = { ...INITIAL_STATE, users }
       console.log('new State', newState)
       return newState
-    case SEND_MESSAGE:
+    case DISPLAY_MESSAGE:
       let messages = [...state.messages]
       messages.push(action.data)
       return { ...state, messages }
@@ -35,6 +35,6 @@ export const DisconnectAction = () => {
   return dispatch => dispatch({ type: DISCONNECT })
 }
 
-export const PublishMessageAction = message => {
-  return dispatch => dispatch({ type: SEND_MESSAGE, data: message })
+export const SendMessageToServer = message => {
+  return dispatch => dispatch({ type: SEND_MESSAGE, message })
 }

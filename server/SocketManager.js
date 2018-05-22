@@ -24,6 +24,7 @@ module.exports = function (socket) {
 
   socket.on(NEW_MESSAGE, data => {
     const { username, message } = data
+    console.log('NEW MEssage', data)
     io.emit(NEW_MESSAGE, { type: 'reply', username, message })
   })
 }

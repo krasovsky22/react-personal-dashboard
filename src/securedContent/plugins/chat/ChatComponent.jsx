@@ -45,6 +45,7 @@ export default class ChatComponent extends React.Component {
     const message = this.state.inputValue
 
     if (message !== '') {
+      this.props.SendMessageToServer(message)
       //this.chatService.sendMessage(message)
     }
   }

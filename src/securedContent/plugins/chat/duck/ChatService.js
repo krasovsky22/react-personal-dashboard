@@ -2,6 +2,8 @@ import io from 'socket.io-client'
 import axios from 'axios'
 
 import * as SERVER_EVENTS from '~server/events'
+import { DISPLAY_MESSAGE } from './reducers'
+import { throwAlert } from '~securedContent/TemplateActions'
 
 var patch = require('socketio-wildcard')(io.Manager)
 
@@ -11,19 +13,16 @@ export default class ChatService {
   socket = null
   username = null
 
-  addListener = (type, action) => {
-    this.socket.on(type, data => {
-      console.warn('detected socket server type:', type, data)
+  connectToChat = function (user, store) {
+    this.socket = io(socketUrl)
+
+    patch(this.socket)
+
+    this.username = user
+    this.socket.on('*', data => {
+      const type = data.data[0]
+      const vals = data.data[1]
       switch (type) {
-        case 'connect_error':
-          this.socket.destroy()
-          action({ type: 'danger', message: 'Unable to connect Chat Server' })
-          break
-
-        case 'connect':
-          this.props.throwAlert({ type: 'success', message: 'Successfully Connected to Chat Server' })
-          break
-
         case SERVER_EVENTS.CONNECTED:
           this.initializeUser()
           break
@@ -31,42 +30,21 @@ export default class ChatService {
           console.warn('socket initialization copmleted:', data)
           break
         case SERVER_EVENTS.NEW_MESSAGE:
-          action(data)
+          store.dispatch({ type: DISPLAY_MESSAGE, data: vals })
           break
         default:
           console.warn(`Unable to handle event type ${type}`)
           break
       }
     })
-  }
-
-  connectToChat = function (user) {
-    this.socket = io(socketUrl)
-
-    patch(this.socket)
-    this.username = user
-    this.socket.on('*', data => {
-      console.log('socket data', data)
-    })
-
-    this.socket.on('connect', data => {
-      console.log('CONNECT', data)
-    })
 
     this.socket.on('connect_error', data => {
       console.log('connect_error', data)
     })
 
-    //declare events
-    // this.addListener('connect_error', this.props.throwAlert)
-    // this.addListener('connect') //will trigger initialize user
-    // this.addListener(SERVER_EVENTS.CONNECTED)
-    // this.addListener(SERVER_EVENTS.INITIALIZATION_COMPLETED)
-    // this.addListener(SERVER_EVENTS.USER_ALREADY_CONNECTED)
-    // this.addListener(SERVER_EVENTS.NEW_MESSAGE, this.props.PublishMessageAction)
-    // this.addListener('test_event', this.props.InitializeChatAction)
-
-    return true
+    this.socket.on('connect', () => {
+      store.dispatch(throwAlert({ type: 'success', message: 'Successfully Connected to Chat Server' }))
+    })
   }
 
   initializeUser = () => {
