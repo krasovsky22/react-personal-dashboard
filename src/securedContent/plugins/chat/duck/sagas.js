@@ -24,7 +24,7 @@ export const handleChatServerResponse = function * handleChatServerResponse (sto
 
     //will yield events uptill disconnect is catched
     const { cancel } = yield race({
-      task: [call(socketEmitActions, chatService)],
+      task: call(socketEmitActions, chatService),
       cancel: take(DISCONNECT)
     })
     if (cancel) {

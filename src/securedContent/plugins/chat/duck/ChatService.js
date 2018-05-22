@@ -19,18 +19,18 @@ export default class ChatService {
     patch(this.socket)
 
     this.username = user
-    this.socket.on('*', data => {
-      const type = data.data[0]
-      const vals = data.data[1]
+    this.socket.on('*', response => {
+      const type = response.data[0]
+      const data = response.data[1]
       switch (type) {
         case SERVER_EVENTS.CONNECTED:
           this.initializeUser()
           break
         case SERVER_EVENTS.INITIALIZATION_COMPLETED:
-          console.warn('socket initialization copmleted:', data)
+          console.warn('socket initialization completed:')
           break
         case SERVER_EVENTS.NEW_MESSAGE:
-          store.dispatch({ type: DISPLAY_MESSAGE, data: vals })
+          store.dispatch({ type: DISPLAY_MESSAGE, data })
           break
         default:
           console.warn(`Unable to handle event type ${type}`)
