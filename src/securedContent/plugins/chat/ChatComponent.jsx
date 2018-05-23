@@ -16,16 +16,10 @@ export default class ChatComponent extends React.Component {
     const { throwAlert, InitializeChatAction, PublishMessageAction } = props
   }
 
-  contacts = ['user 1', 'user 2', 'user 3', 'user 4']
-
   componentDidMount () {
     //connect to chat server
     const { user } = this.props.user
     this.props.InitializeChatAction(user)
-  }
-
-  componentWillUnmount () {
-    this.props.DisconnectAction()
   }
 
   sendMesage = () => {
@@ -52,12 +46,15 @@ export default class ChatComponent extends React.Component {
   }
 
   render () {
-    const Messages = this.props.chat.messages.map(({ type, message }) => (
+    const Messages = this.props.chat.messages.map(({ username, type, message }) => (
       <div className={type}>
+        <i>
+          From: <b>{username}</b>
+        </i>
         <p>{message}</p>
       </div>
     ))
-    const Contacts = this.contacts.map(contact => (
+    const Contacts = this.props.chat.users.map(contact => (
       <div className="contact">
         <div className="profile_image">
           <FontAwesomeIcon icon={faUserCircle} size="2x" />

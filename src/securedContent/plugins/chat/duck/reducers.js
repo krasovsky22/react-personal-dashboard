@@ -13,9 +13,8 @@ export const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CONNECTED:
-      const users = [action.username]
-      const newState = { ...INITIAL_STATE, users }
-      console.log('new State', newState)
+      const users = [...action.connectedUsernames]
+      const newState = { ...state, users: [...new Set(users)] }
       return newState
     case DISPLAY_MESSAGE:
       let messages = [...state.messages]

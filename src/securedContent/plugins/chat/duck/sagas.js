@@ -20,7 +20,9 @@ export const handleChatServerResponse = function * handleChatServerResponse (sto
   const chatService = new ChatService()
   while (true) {
     const { username } = yield take(INIT_CHAT_CONNECTION)
-    chatService.connectToChat(username, store)
+    if (chatService.isConnected === false) {
+      chatService.connectToChat(username, store)
+    }
 
     //will yield events uptill disconnect is catched
     const { cancel } = yield race({

@@ -2,7 +2,7 @@ import io from 'socket.io-client'
 import axios from 'axios'
 
 import * as SERVER_EVENTS from '~server/events'
-import { DISPLAY_MESSAGE, DISCONNECT } from './reducers'
+import { DISPLAY_MESSAGE, DISCONNECT, CONNECTED } from './reducers'
 import { throwAlert } from '~securedContent/TemplateActions'
 
 var patch = require('socketio-wildcard')(io.Manager)
@@ -12,6 +12,8 @@ const socketUrl = 'http://localhost:3231'
 export default class ChatService {
   socket = null
   username = null
+
+  isConnected = false
 
   connectToChat = function (user, store) {
     this.socket = io(socketUrl)
@@ -26,7 +28,9 @@ export default class ChatService {
           this.initializeUser()
           break
         case SERVER_EVENTS.INITIALIZATION_COMPLETED:
-          console.warn('socket initialization completed:')
+          const { connectedUsernames } = data
+          this.isConnected = true
+          store.dispatch({ type: CONNECTED, connectedUsernames })
           break
         case SERVER_EVENTS.NEW_MESSAGE:
           store.dispatch({ type: DISPLAY_MESSAGE, data })

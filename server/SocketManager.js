@@ -12,9 +12,10 @@ module.exports = function (socket) {
     const { username } = data
     connectedClients = addClient(connectedClients, username, socket)
 
+    const connectedUsernames = Object.getOwnPropertyNames(connectedClients)
     socket.user = username
     //send complete response to current socket
-    socket.emit(INITIALIZATION_COMPLETED, { username, socketId: socket.id })
+    io.emit(INITIALIZATION_COMPLETED, { connectedUsernames, socketId: socket.id })
   })
 
   socket.on('disconnect', () => {
@@ -33,7 +34,6 @@ module.exports = function (socket) {
       const sockets = tClient[1]
 
       sockets.map(tSocket => {
-        console.log('username asdasd', tUsername, username)
         const type = tUsername === username ? 'reply' : 'answer'
         tSocket.emit(NEW_MESSAGE, { type, username, message })
       })
