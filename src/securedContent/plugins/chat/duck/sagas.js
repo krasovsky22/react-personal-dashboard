@@ -17,9 +17,9 @@ function * socketEmitActions (chatService) {
 }
 
 export const handleChatServerResponse = function * handleChatServerResponse (store) {
+  const chatService = new ChatService()
   while (true) {
     const { username } = yield take(INIT_CHAT_CONNECTION)
-    const chatService = new ChatService()
     chatService.connectToChat(username, store)
 
     //will yield events uptill disconnect is catched
@@ -30,8 +30,5 @@ export const handleChatServerResponse = function * handleChatServerResponse (sto
     if (cancel) {
       chatService.disconnect()
     }
-
-    // const { data } = yield take(SEND_MESSAGE)
-    // chatService.sendMessage(data)
   }
 }

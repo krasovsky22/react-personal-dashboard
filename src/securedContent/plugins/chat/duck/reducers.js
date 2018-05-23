@@ -19,7 +19,7 @@ export default (state = INITIAL_STATE, action) => {
       return newState
     case DISPLAY_MESSAGE:
       let messages = [...state.messages]
-      messages.push(action.data)
+      messages.unshift(action.data)
       return { ...state, messages }
     case DISCONNECT:
       return INITIAL_STATE

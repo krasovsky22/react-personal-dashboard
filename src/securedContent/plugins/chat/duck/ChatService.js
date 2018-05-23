@@ -2,7 +2,7 @@ import io from 'socket.io-client'
 import axios from 'axios'
 
 import * as SERVER_EVENTS from '~server/events'
-import { DISPLAY_MESSAGE } from './reducers'
+import { DISPLAY_MESSAGE, DISCONNECT } from './reducers'
 import { throwAlert } from '~securedContent/TemplateActions'
 
 var patch = require('socketio-wildcard')(io.Manager)
@@ -15,7 +15,6 @@ export default class ChatService {
 
   connectToChat = function (user, store) {
     this.socket = io(socketUrl)
-
     patch(this.socket)
 
     this.username = user
@@ -39,7 +38,8 @@ export default class ChatService {
     })
 
     this.socket.on('connect_error', data => {
-      console.log('connect_error', data)
+      store.dispatch(throwAlert({ type: 'danger', message: 'Unable Connected to Chat Server' }))
+      store.dispatch({ type: DISCONNECT })
     })
 
     this.socket.on('connect', () => {
