@@ -14,18 +14,6 @@ export default class ChatComponent extends React.Component {
   constructor (props) {
     super(props)
     const { throwAlert, InitializeChatAction, PublishMessageAction } = props
-
-    // this.props.chat.messages = [
-    //   { type: 'reply', message: 'test message 1' },
-    //   { type: 'answer', message: 'test message 2' },
-    //   { type: 'reply', message: 'test message 3' },
-    //   { type: 'answer', message: 'test message 4' },
-    //   { type: 'reply', message: 'test message 5' },
-    //   { type: 'answer', message: 'test message 6' },
-    //   { type: 'reply', message: 'test message 7' },
-    //   { type: 'answer', message: 'test message 8' },
-    //   { type: 'reply', message: 'test message 9' }
-    // ]
   }
 
   contacts = ['user 1', 'user 2', 'user 3', 'user 4']
@@ -34,11 +22,10 @@ export default class ChatComponent extends React.Component {
     //connect to chat server
     const { user } = this.props.user
     this.props.InitializeChatAction(user)
-    //this.chatConnected = this.chatService.connectToChat(user)
   }
 
   componentWillUnmount () {
-    //this.chatService.disconnect()
+    this.props.DisconnectAction()
   }
 
   sendMesage = () => {
@@ -46,7 +33,9 @@ export default class ChatComponent extends React.Component {
 
     if (message !== '') {
       this.props.SendMessageToServer(message)
-      //this.chatService.sendMessage(message)
+      this.setState({
+        inputValue: ''
+      })
     }
   }
 
@@ -54,6 +43,12 @@ export default class ChatComponent extends React.Component {
     this.setState({
       inputValue: event.target.value
     })
+  }
+
+  _handleKeyPress = event => {
+    if (event.key === 'Enter') {
+      this.sendMesage()
+    }
   }
 
   render () {
@@ -80,7 +75,14 @@ export default class ChatComponent extends React.Component {
             <div className="messages">{Messages}</div>
 
             <div className="form-group row message-input">
-              <Input type="text" name="message" className="col-md-11" onChange={event => this.updateInputValue(event)} />
+              <Input
+                type="text"
+                name="message"
+                className="col-md-11"
+                value={this.state.inputValue}
+                onChange={event => this.updateInputValue(event)}
+                onKeyPress={this._handleKeyPress}
+              />
               <Button className="col-md-1" type="submit" onClick={this.sendMesage}>
                 <FontAwesomeIcon icon={faPaperPlane} />
               </Button>

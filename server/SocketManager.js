@@ -4,6 +4,7 @@ const { CONNECTED, NEW_MESSAGE, INITIALIZE_USER, USER_ALREADY_CONNECTED, INITIAL
 
 var connectedClients = {}
 
+/* Main server handling */
 module.exports = function (socket) {
   socket.emit(CONNECTED, { success: true })
 
@@ -24,8 +25,19 @@ module.exports = function (socket) {
 
   socket.on(NEW_MESSAGE, data => {
     const { username, message } = data
-    console.log('NEW MEssage', data)
-    io.emit(NEW_MESSAGE, { type: 'reply', username, message })
+
+    const tConnectedClient = Object.entries(connectedClients)
+
+    tConnectedClient.map(tClient => {
+      const tUsername = tClient[0]
+      const sockets = tClient[1]
+
+      sockets.map(tSocket => {
+        console.log('username asdasd', tUsername, username)
+        const type = tUsername === username ? 'reply' : 'answer'
+        tSocket.emit(NEW_MESSAGE, { type, username, message })
+      })
+    })
   })
 }
 
