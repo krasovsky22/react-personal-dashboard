@@ -1,6 +1,6 @@
 const io = require('./index').io
 
-const { CONNECTED, NEW_MESSAGE, INITIALIZE_USER, USER_ALREADY_CONNECTED, INITIALIZATION_COMPLETED, GET_USERS } = require('./events')
+const { CONNECTED, NEW_MESSAGE, INITIALIZE_USER, USER_ALREADY_CONNECTED, INITIALIZATION_COMPLETED, GET_USERS, USER_DISCONNETED } = require('./events')
 
 var connectedClients = {}
 
@@ -22,6 +22,10 @@ module.exports = function (socket) {
     if ('user' in socket) {
       connectedClients = removeClient(connectedClients, socket)
     }
+
+    //generate list of usernames
+    const connectedUsernames = Object.getOwnPropertyNames(connectedClients)
+    io.emit(USER_DISCONNETED, { connectedUsernames })
   })
 
   socket.on(NEW_MESSAGE, data => {

@@ -2,7 +2,7 @@ import io from 'socket.io-client'
 import axios from 'axios'
 
 import * as SERVER_EVENTS from '~server/events'
-import { DISPLAY_MESSAGE, DISCONNECT, CONNECTED } from './reducers'
+import { DISPLAY_MESSAGE, DISCONNECT, CONNECTED, REFRESH_USERS } from './reducers'
 import { throwAlert } from '~securedContent/TemplateActions'
 
 var patch = require('socketio-wildcard')(io.Manager)
@@ -34,6 +34,9 @@ export default class ChatService {
           break
         case SERVER_EVENTS.NEW_MESSAGE:
           store.dispatch({ type: DISPLAY_MESSAGE, data })
+          break
+        case SERVER_EVENTS.USER_DISCONNETED:
+          store.dispatch({ type: REFRESH_USERS, connectedUsernames: data.connectedUsernames })
           break
         default:
           console.warn(`Unable to handle event type ${type}`)

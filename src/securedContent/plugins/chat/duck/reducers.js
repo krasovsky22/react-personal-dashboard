@@ -1,6 +1,7 @@
 export const CONNECTED = 'CHAT/CONNECT'
 export const DISCONNECT = 'CHAT/DISCONNECT'
 export const DISPLAY_MESSAGE = 'CHAT/DISPLAY_MESSAGE'
+export const REFRESH_USERS = 'CHAT/REFRESH_USERS'
 
 export const INIT_CHAT_CONNECTION = 'CHAT/SAGA/INIT_CONNECTION'
 export const SEND_MESSAGE = 'CHAT/SAGA/SEND_MESSAGE'
@@ -13,6 +14,7 @@ export const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CONNECTED:
+    case REFRESH_USERS:
       const users = [...action.connectedUsernames]
       const newState = { ...state, users: [...new Set(users)] }
       return newState
