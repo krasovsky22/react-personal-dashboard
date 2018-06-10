@@ -1,5 +1,6 @@
 import React from 'react'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap'
+import Draggable from 'react-draggable'
 
 import './sass/plugins.scss'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
@@ -21,16 +22,18 @@ class PluginsComponent extends React.Component {
     const dropDownMenuClasses = `dropdown-menu ${this.state.open ? 'show' : ''}`
     const dropDownClasses = `dropleft dropdown ${this.state.open ? 'show' : ''}`
     return (
-      <div className="fixed-plugin">
-        <div className={dropDownClasses}>
-          <Button className="plugin-button" color="secondary" onClick={this.toggle}>
-            <FontAwesomeIcon icon={faComments} />
-          </Button>
-          <div className={dropDownMenuClasses}>
-            <ChatContainer />
+      <Draggable axis="y">
+        <div className="fixed-plugin">
+          <div className={dropDownClasses}>
+            <Button className="plugin-button" color="secondary" onClick={this.toggle}>
+              <FontAwesomeIcon icon={faComments} />
+            </Button>
+            <div className={dropDownMenuClasses}>
+              <ChatContainer />
+            </div>
           </div>
         </div>
-      </div>
+      </Draggable>
     )
   }
 }
