@@ -47,7 +47,7 @@ class GoogleMapComponent extends Component {
     return (
       <div>
         <Row>
-          <Col xl={12} md={12}>
+          <Col xl={9} md={9}>
             <Card style={{ height: '500px' }}>
               {initialized === false ? (
                 <Loader active={true} message="Loading..." />
@@ -59,6 +59,15 @@ class GoogleMapComponent extends Component {
                   </GoogleMapReact>
                 </div>
               )}
+            </Card>
+          </Col>
+          <Col xl={3} md={9}>
+            <Card>
+              <CardBody>Card Body....</CardBody>
+            </Card>
+
+            <Card>
+              <CardBody>Card Body2....</CardBody>
             </Card>
           </Col>
         </Row>

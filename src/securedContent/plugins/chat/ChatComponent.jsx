@@ -1,4 +1,5 @@
 import React from 'react'
+import uuid from 'node-uuid'
 import { Input, Button, Row, Col } from 'reactstrap'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { faPaperPlane, faUserCircle } from '@fortawesome/fontawesome-free-solid'
@@ -47,7 +48,7 @@ export default class ChatComponent extends React.Component {
 
   render () {
     const Messages = this.props.chat.messages.map(({ username, type, message }) => (
-      <div className={type}>
+      <div key={uuid()} className={type}>
         <i>
           From: <b>{username}</b>
         </i>
@@ -55,7 +56,7 @@ export default class ChatComponent extends React.Component {
       </div>
     ))
     const Contacts = this.props.chat.users.map(contact => (
-      <div className="contact">
+      <div key={btoa(contact)} className="contact">
         <div className="profile_image">
           <FontAwesomeIcon icon={faUserCircle} size="2x" />
         </div>
