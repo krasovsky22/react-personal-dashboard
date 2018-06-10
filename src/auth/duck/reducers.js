@@ -78,10 +78,14 @@ export const logout = () => {
 }
 
 export const checkIfLoggedIn = () => {
-  const token = localStorage.getItem('user')
-  return dispatch => {
-    if (token) {
-      dispatch(loginSuccess(token))
+  return (dispatch, getState) => {
+    const { user } = getState().security
+    //make sure we are not logged in
+    if (!user) {
+      const token = localStorage.getItem('user')
+      if (token) {
+        dispatch(loginSuccess(token))
+      }
     }
   }
 }

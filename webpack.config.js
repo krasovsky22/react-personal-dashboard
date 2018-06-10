@@ -110,13 +110,11 @@ module.exports = (env = {}, args = {}) => {
     resolve: {
       extensions: ['.js', '.css', '.jsx'],
       alias: {
-        '@config': path.resolve(__dirname, 'config/' + args.mode + '.config.js'),
-        '@images': path.resolve(__dirname, 'media/images'),
         '~auth': path.resolve(__dirname, 'src/auth'),
         '~securedContent': path.resolve(__dirname, 'src/securedContent'),
         '~templateContents': path.resolve(__dirname, 'src/securedContent/template'),
-        '@css': path.resolve(__dirname, 'media/css'),
-        '~helpers': path.resolve(__dirname, 'src/helpers')
+        '~helpers': path.resolve(__dirname, 'src/helpers'),
+        '~server': path.resolve(__dirname, 'server')
       }
     }
   }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import uuid from 'node-uuid'
 import PrivateRouteContainer from '~securedContent/PrivateRouteContainer'
@@ -12,11 +12,12 @@ const PrivateRouter = () => {
   for (const Route in Routes) {
     /* switch Route */
     if (Routes[Route].length > 1) {
+      const switchId = Routes[Route].reduce((newVal, current) => newVal + '_' + current, '')
       const tRoute = (
-        <Switch key={uuid()}>
+        <Switch key={btoa(switchId)}>
           {Routes[Route].map(function (switchRoute, key) {
             index++
-            return <PrivateRouteContainer key={uuid()} exact path={switchRoute.path} component={switchRoute.Component} />
+            return <PrivateRouteContainer key={btoa(switchRoute.path)} exact path={switchRoute.path} component={switchRoute.Component} />
           })}
         </Switch>
       )
@@ -24,12 +25,13 @@ const PrivateRouter = () => {
     } else {
       /* Regular Private Route */
       for (const switchRoute in Routes[Route]) {
-        outputDiv.push(<PrivateRouteContainer key={uuid()} exact path={Routes[Route][switchRoute].path} component={Routes[Route][switchRoute].Component} />)
+        const uniqueKey = btoa(Routes[Route][switchRoute].path)
+        outputDiv.push(<PrivateRouteContainer key={uniqueKey} exact path={Routes[Route][switchRoute].path} component={Routes[Route][switchRoute].Component} />)
         index++
       }
     }
   }
-  return <div>{outputDiv}</div>
+  return <Fragment>{outputDiv}</Fragment>
 }
 
 export default PrivateRouter

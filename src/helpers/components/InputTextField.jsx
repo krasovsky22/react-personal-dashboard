@@ -3,7 +3,6 @@ import { Input, FormGroup, Label, Alert } from 'reactstrap'
 import PropTypes from 'prop-types'
 
 const InputTextField = props => {
-  console.log(props)
   const { type, id, label, input, submitting, placeholder, meta: { touched, submitFailed, error, warning } } = props
 
   const divId = id || input.name

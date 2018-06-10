@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import { Redirect, Route } from 'react-router-dom'
-import SecuredTemplateComponent from '~securedContent/TemplateComponent'
+import SecuredTemplateComponent from '~securedContent/SecuredTemplateComponent'
+import { PreviousMap } from 'postcss'
 
 class PrivateRouteComponent extends Component {
   constructor (props) {
     super(props)
-    props.checkIfLoggedIn()
   }
+
+  componentWillMount () {
+    this.props.checkIfLoggedIn()
+  }
+
   render () {
     const { security, component: Component, ...rest } = this.props
     const redirrectUrl = `/login?redirrectUrl=${window.location.pathname}`

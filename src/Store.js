@@ -4,13 +4,16 @@ import thunk from 'redux-thunk'
 import createHistory from 'history/createBrowserHistory'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { createLogger } from 'redux-logger'
+import createSagaMiddleware from 'redux-saga'
 import rootReducer from './Reducer'
+import { handleChatServerResponse } from '~securedContent/plugins/chat/duck/sagas'
 
 export const history = createHistory()
 
 const initialState = {}
 const enhancers = []
-const middleware = [thunk, routerMiddleware(history)]
+const sagaMiddleware = createSagaMiddleware()
+const middleware = [thunk, routerMiddleware(history), sagaMiddleware]
 
 if (process.env.NODE_ENV === 'development') {
   middleware.push(createLogger())
@@ -24,5 +27,7 @@ if (process.env.NODE_ENV === 'development') {
 const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers)
 
 const store = createStore(rootReducer, initialState, composedEnhancers)
+
+sagaMiddleware.run(handleChatServerResponse, store)
 
 export default store
