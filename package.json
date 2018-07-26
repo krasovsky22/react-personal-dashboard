@@ -1,5 +1,6 @@
 {
   "name": "react-redux-example",
+  "homepage": "https://krasovsky22.github.io/react-personal-dashboard/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
