@@ -1,10 +1,23 @@
-Used Articles
-https://levelup.gitconnected.com/structure-your-react-redux-project-for-scalability-and-maintainability-618ad82e32b7
-https://blog.scalac.io/react-redux-jwt-authentication.html
-https://creativetimofficial.github.io/light-bootstrap-dashboard-react/#/user
-https://github.com/creativetimofficial/light-bootstrap-dashboard-react
+# React Custom dashboard
 
-vscode user settings:
+My Custom frontent for dashboard.
+
+Its my first attemt to build react single page app, dont judge too much 8)
+
+## To build application run
+
+`yarn start` for development mode
+`yarn build` for production build
+
+## Used Articles
+
+`https://levelup.gitconnected.com/structure-your-react-redux-project-for-scalability-and-maintainability-618ad82e32b7`
+`https://blog.scalac.io/react-redux-jwt-authentication.html`
+`https://creativetimofficial.github.io/light-bootstrap-dashboard-react/#/user`
+`https://github.com/creativetimofficial/light-bootstrap-dashboard-react`
+
+## VSCode user settings:
+
 {
 "git.autofetch": true,
 "explorer.confirmDelete": false,
