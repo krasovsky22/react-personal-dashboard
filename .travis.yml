@@ -8,9 +8,10 @@ script:
   - npm test
   - npm run build
 deploy:
-  provider: pages
+  provider: heroku
+  api_key:
+    secure: '7606fc64-17bf-407e-87c0-5d3e81b77b79'
+  app: react-single-page-example
   skip_cleanup: true
-  github_token: $github_token
-  local_dir: src
   on:
     branch: master
