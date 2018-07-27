@@ -10,8 +10,8 @@ script:
 deploy:
   provider: heroku
   api_key:
-    secure: '7606fc64-17bf-407e-87c0-5d3e81b77b79'
-  app: queous-meadow-90063
+    secure: $HEROKU_KEY
+  app: $HEROKU_APP
   skip_cleanup: true
   on:
     branch: master
