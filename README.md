@@ -1,3 +1,5 @@
+![Build status](https://travis-ci.org/krasovsky22/react-personal-dashboard.svg?branch=master)
+
 # React Custom dashboard
 
 My Custom frontent for dashboard.
