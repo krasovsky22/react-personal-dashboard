@@ -45,7 +45,7 @@ class Header extends Component {
                 <NavLink href="/components/">Components</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                <NavLink href="https://github.com/krasovsky22/react-personal-dashboard">GitHub</NavLink>
               </NavItem>
               <Dropdown isOpen={this.state.isOpen} nav inNavbar toggle={this.toggle}>
                 <DropdownToggle nav caret>
