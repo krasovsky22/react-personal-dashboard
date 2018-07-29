@@ -35,6 +35,7 @@ export default class ChatComponent extends React.Component {
   }
 
   updateInputValue = event => {
+    console.log('change event')
     this.setState({
       inputValue: event.target.value
     })
@@ -44,6 +45,8 @@ export default class ChatComponent extends React.Component {
     if (event.key === 'Enter') {
       this.sendMesage()
     }
+
+    console.log(event.target.value)
   }
 
   render () {
@@ -76,7 +79,7 @@ export default class ChatComponent extends React.Component {
               <Input
                 type="text"
                 name="message"
-                className="col-md-11"
+                className="col-md-11 not-draggable"
                 value={this.state.inputValue}
                 onChange={event => this.updateInputValue(event)}
                 onKeyPress={this._handleKeyPress}

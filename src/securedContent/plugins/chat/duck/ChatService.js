@@ -1,7 +1,7 @@
 import io from 'socket.io-client'
 import axios from 'axios'
 
-import * as SERVER_EVENTS from '~server/events'
+import * as SERVER_EVENTS from './serverEvents'
 import { DISPLAY_MESSAGE, DISCONNECT, CONNECTED, REFRESH_USERS } from './reducers'
 import { throwAlert } from '~securedContent/TemplateActions'
 

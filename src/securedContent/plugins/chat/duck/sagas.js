@@ -1,10 +1,12 @@
 import { put, take, takeEvery, call, race } from 'redux-saga/effects'
 import { eventChannel } from 'redux-saga'
-import { INIT_CHAT_CONNECTION, SEND_MESSAGE, DISCONNECT } from './reducers'
 import io from 'socket.io-client'
 import axios from 'axios'
 
-import * as SERVER_EVENTS from '~server/events'
+import { INIT_CHAT_CONNECTION, SEND_MESSAGE, DISCONNECT } from './reducers'
+import * as SERVER_EVENTS from './serverEvents'
+
+
 import ChatService from './ChatService'
 
 var patch = require('socketio-wildcard')(io.Manager)

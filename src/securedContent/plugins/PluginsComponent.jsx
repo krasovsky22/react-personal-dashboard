@@ -22,7 +22,7 @@ class PluginsComponent extends React.Component {
     const dropDownMenuClasses = `dropdown-menu ${this.state.open ? 'show' : ''}`
     const dropDownClasses = `dropleft dropdown ${this.state.open ? 'show' : ''}`
     return (
-      <Draggable axis="y">
+      <Draggable axis="y" cancel=".not-draggable">
         <div className="fixed-plugin">
           <div className={dropDownClasses}>
             <Button className="plugin-button" color="secondary" onClick={this.toggle}>

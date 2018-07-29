@@ -113,8 +113,7 @@ module.exports = (env = {}, args = {}) => {
         '~auth': path.resolve(__dirname, 'src/auth'),
         '~securedContent': path.resolve(__dirname, 'src/securedContent'),
         '~templateContents': path.resolve(__dirname, 'src/securedContent/template'),
-        '~helpers': path.resolve(__dirname, 'src/helpers'),
-        '~server': path.resolve(__dirname, 'server')
+        '~helpers': path.resolve(__dirname, 'src/helpers')
       }
     }
   }
